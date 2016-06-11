@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'capistrano-rails', group: :development
 gem 'haml'
 gem 'rspec'
+# uploader
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'pry'
