@@ -33,6 +33,11 @@ gem 'rspec'
 gem 'carrierwave'
 gem 'mini_magick'
 
+#bootstrap
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
+
+
 group :development, :test do
   gem 'pry'
 end

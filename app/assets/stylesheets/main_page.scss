@@ -1,0 +1,40 @@
+// Place all the styles related to the MainPage controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.navbar {
+  .navbar-brand {
+    padding: 5px 15px;
+  }
+}
+
+.carousel#popular {
+  .carousel-inner {
+    margin: 0 50px;
+    width: calc(100% - 100px);
+
+    .item {
+      .image {
+        max-width: 100%;
+        max-height:300px;
+      }
+      .add-to-cart {
+        width: 100px;
+        display: inline-block;
+      }
+      .description {
+        min-height: 150px;
+        max-height: 200px;
+        overflow: hidden;
+      }
+      .price {
+        display: inline-block;
+        margin-right: 15px;
+      }
+    }
+  }
+  .carousel-control {
+    width: 50px;
+    background: none;
+    color:black;
+  }
+}

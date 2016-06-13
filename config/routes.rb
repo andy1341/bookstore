@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root 'main_page#index'
+  get 'main_page/index'
+
   resources :books
   resources :categories
   resources :authors
