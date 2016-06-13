@@ -24,9 +24,15 @@
                 %li
                   =link_to category.name, category_path(category.id)
             %ul.nav.navbar-nav.navbar-right
-              %li
-                =link_to 'Cart', '#'
-              %li
-                =link_to 'Sign Up', '#'
+              -if user_signed_in?
+                %li
+                  =link_to 'Cart', '#'
+                %li
+                  =link_to 'Profile', persons_profile_path
+                %li
+                  =link_to 'Log out', destroy_user_session_path, method: :delete
+              -else
+                %li
+                  =link_to 'Sign In', new_user_session_path
     .container
       = yield
