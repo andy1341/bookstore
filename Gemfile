@@ -36,7 +36,9 @@ gem 'mini_magick'
 #bootstrap
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
-
+#admin
+gem 'activeadmin', github: 'activeadmin'
+gem 'devise'
 
 group :development, :test do
   gem 'pry'
