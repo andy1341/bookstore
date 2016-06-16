@@ -1,5 +1,6 @@
 ActiveAdmin.register Book do
-  permit_params :title, :short_description, :desctiption, :price, :image
+  permit_params :title, :short_description, :desctiption,
+                :price, :image, :author_id, :category_id
 
   index do
     selectable_column

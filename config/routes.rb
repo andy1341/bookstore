@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'main_page#index'
   get 'main_page/index'
 
-  get 'persons/profile', as: 'user_root'
+  get 'users/show', as: 'user'
   resources :books
   resources :categories
   resources :authors

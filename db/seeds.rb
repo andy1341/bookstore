@@ -5,4 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+require 'net/http'
+require 'json'
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') unless AdminUser.exists?(email:'admin@example.com')
+
+response = Net::HTTP.get(URI('http://country.io/names.json'))
+countries = JSON.parse(response)
+
+countries.each do |code,country|
+  Country.create!(title:country) unless Country.exists?(title:country)
+end

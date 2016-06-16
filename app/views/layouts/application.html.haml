@@ -28,11 +28,13 @@
                 %li
                   =link_to 'Cart', '#'
                 %li
-                  =link_to 'Profile', persons_profile_path
+                  =link_to 'Profile', user_path
                 %li
                   =link_to 'Log out', destroy_user_session_path, method: :delete
               -else
                 %li
                   =link_to 'Sign In', new_user_session_path
+                %li
+                  =link_to 'Sign Up', new_user_registration_path
     .container
       = yield
