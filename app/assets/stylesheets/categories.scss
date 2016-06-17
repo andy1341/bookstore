@@ -1,0 +1,19 @@
+.book {
+  height: 400px;
+  margin-bottom:15px;
+
+  img {
+    height: 200px;
+    width: 200px;
+    display: inline-block;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  .description {
+      height: 100px;
+      overflow: hidden;
+      box-shadow: inset #FFFFFF 0px -10px 20px;
+      padding: 5px 10px;
+  }
+}

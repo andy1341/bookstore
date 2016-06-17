@@ -4,11 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_addresses, if: :devise_controller?
+  before_action :init, if: :devise_controller?
 
   protected
 
-  def set_addresses
+  def init
+    @user ||= User.new
     @user.billing_address ||= Address.new
     @user.shipping_address ||= Address.new
   end

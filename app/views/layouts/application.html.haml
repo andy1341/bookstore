@@ -20,9 +20,17 @@
               = image_tag '/images/logo.png', height: '40px'
           .navbar-collapse.collapse#navbar
             %ul.nav.navbar-nav
-              -categories.each do |category|
+              -categories[0..3].each do |category|
                 %li
-                  =link_to category.name, category_path(category.id)
+                  =link_to category.name, category
+              %li.dropdown
+                %a.dropdown-toggle{data:{toggle:"dropdown"}, href:"#"}
+                  more
+                  %span.caret
+                %ul.dropdown-menu
+                  -categories[4..-1].each do |category|
+                    %li
+                      =link_to category.name, category
             %ul.nav.navbar-nav.navbar-right
               -if user_signed_in?
                 %li

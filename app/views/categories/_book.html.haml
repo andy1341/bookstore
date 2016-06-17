@@ -1,0 +1,7 @@
+.col-md-4.book
+  %p
+    =image_tag book.image
+  %h2= book.title
+  %p.description= book.short_description
+  %p
+    =link_to 'View Details', book, class: 'btn btn-primary'
