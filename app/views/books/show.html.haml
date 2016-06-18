@@ -1,0 +1,51 @@
+%p#notice= notice
+
+%h1= @book.title
+
+.container.book-detail
+  .row
+    .col-md-4.image
+      =image_tag @book.image
+    .col-md-8
+      .row
+        .price
+          $
+          %b= @book.price
+        =render 'cart/add_btn'
+      .row.description
+        =@book.description
+  .row
+    %h2 Reviews
+
+-#
+-#<p>
+-#  <strong>Short description:</strong>
+-#  <%= @book.short_description %>
+-#</p>
+-#
+-#<p>
+-#  <strong>Description:</strong>
+-#  <%= @book.description %>
+-#</p>
+-#
+-#<p>
+-#  <strong>Author:</strong>
+-#  <%= @book.author.title %>
+-#</p>
+-#
+-#<p>
+-#  <strong>Category:</strong>
+-#  <%= @book.category.name %>
+-#</p>
+-#
+-#<p>
+-#  <strong>Price:</strong>
+-#  <%= @book.price %>
+-#</p>
+-#
+-#<p>
+-#  <strong>Images:</strong>
+-#  <%= image_tag @book.image, width:100%>
+-#</p>
+-#
+-#<%= link_to 'Back', :back %>

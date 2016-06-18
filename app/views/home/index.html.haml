@@ -8,23 +8,18 @@
           .row
             .col-sm-8.col-sm-push-2
               %h2
-                =book.title
+                =link_to book.title, book
                 %small= link_to book.author.title, book.author
           .row
             .col-sm-4
-              =image_tag book.image, class:['image']
+              =link_to image_tag(book.image, class:['image']), book
             .col-sm-8
               .row.description
                 =book.description
               .row
                 %div.price
                   %b$#{book.price}
-                %form.add-to-cart.form.form-inline
-                  .input-group
-                    %input.form-control{type:'number',min:1, max:20, value: 1}
-                    .input-group-btn
-                      %button.btn.btn-primary
-                        %span.glyphicon.glyphicon-shopping-cart
+                =render 'cart/add_btn'
     %a.left.carousel-control{href:'#popular', role:'button', 'data-slide': 'prev'}
       %span.glyphicon.glyphicon-chevron-left{'aria-hidden':true}
       %span.sr-only Previous
