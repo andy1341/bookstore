@@ -1,4 +1,8 @@
 %h1 Cart
 
-.container.cart-content
-  =render 'carts/cart_content'
+-if @orders_items.empty?
+  .container.cart-content.text-center
+    %h2 There is no books in your cart
+-else
+  .container.cart-content
+    =render 'carts/cart_content'

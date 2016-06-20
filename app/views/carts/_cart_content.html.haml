@@ -1,4 +1,4 @@
-%table.table
+%table.table.books
   %thead
     %tr
       %th
@@ -6,11 +6,14 @@
       %th PRICE
       %th Quantity
       %th TOTAL
+      %th
   %tbody
     -@orders_items.each do |item|
       =render 'carts/cart_row', item:item
-.row
-  .col-md-8.col-md-push-2.text-right
-    %b
-      TOTAL:
-      =current_order.total
+    %tr
+      %td{colspan:4}
+      %td{colspan:2}
+        %b
+          $#{current_order.total}
+.col-md-4.col-md-push-4
+  =link_to "Make order", checkout_path, class: 'btn btn-success btn-block'

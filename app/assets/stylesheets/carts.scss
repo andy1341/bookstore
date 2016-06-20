@@ -16,3 +16,14 @@
     }
   }
 }
+
+table.books {
+  tr {
+    td:nth-child(4) {
+      width: 100px;
+    }
+    td {
+      vertical-align: middle;
+    }
+  }
+}

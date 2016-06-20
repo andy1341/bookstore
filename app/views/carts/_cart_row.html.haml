@@ -5,12 +5,12 @@
     %td
       =item.book.title
     %td
-      =item.cost
+      $#{item.cost}
     %td
       =f.number_field :count, value: item.count.to_i, class: 'form-control count', min:1, max: 20
       =f.hidden_field :book_id, value: item.book.id
     %td
-      =item.total
+      $#{item.total}
     %td
       =f.button tag('span',class:'glyphicon glyphicon-refresh'), class: 'btn btn-primary'
       =link_to tag('span',class:'glyphicon glyphicon-remove'), item, { data: { confirm: "Are you sure you wish to delete the product '#{item.book.title}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger" }
