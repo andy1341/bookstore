@@ -11,7 +11,8 @@
         .price
           $
           %b= @book.price
-        =render 'cart/add_btn'
+        .cart-btn-container{id: @book.id}
+          =render 'carts/add_btn', orders_item: @orders_item, book: @book
       .row.description
         =@book.description
   .row

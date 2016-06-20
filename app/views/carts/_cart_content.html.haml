@@ -1,0 +1,16 @@
+%table.table
+  %thead
+    %tr
+      %th
+      %th BOOK
+      %th PRICE
+      %th Quantity
+      %th TOTAL
+  %tbody
+    -@orders_items.each do |item|
+      =render 'carts/cart_row', item:item
+.row
+  .col-md-8.col-md-push-2.text-right
+    %b
+      TOTAL:
+      =current_order.total

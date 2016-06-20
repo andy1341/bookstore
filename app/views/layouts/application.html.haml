@@ -29,9 +29,9 @@
                     %li
                       =link_to category.name, category
             %ul.nav.navbar-nav.navbar-right
+              %li.cart-link
+                =render 'layouts/cart_text'
               -if user_signed_in?
-                %li
-                  =link_to 'Cart', '#'
                 %li
                   =link_to 'Profile', user_path
                 %li

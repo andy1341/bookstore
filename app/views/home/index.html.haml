@@ -19,7 +19,8 @@
               .row
                 %div.price
                   %b$#{book.price}
-                =render 'cart/add_btn'
+                .cart-btn-container{id: book.id}
+                  =render 'carts/add_btn', book: book, orders_item: OrdersItem.new
     %a.left.carousel-control{href:'#popular', role:'button', 'data-slide': 'prev'}
       %span.glyphicon.glyphicon-chevron-left{'aria-hidden':true}
       %span.sr-only Previous

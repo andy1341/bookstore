@@ -40,6 +40,8 @@ gem 'autoprefixer-rails'
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 
+gem 'aasm'
+
 group :development, :test do
   gem 'pry'
 end

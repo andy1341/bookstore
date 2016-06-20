@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'orders_items/create'
+
+  get 'orders_items/update'
+
+  get 'orders_items/destroy'
+
+  # get 'carts/show'
+
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -9,5 +17,7 @@ Rails.application.routes.draw do
   resources :books, only: [:show]
   resources :categories, only: [:show]
   resources :authors
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resource  :cart, only: [:show]
+  resources :orders_items, only: [:create, :update, :destroy]
+
 end
