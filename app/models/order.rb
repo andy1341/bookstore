@@ -4,9 +4,11 @@ class Order < ApplicationRecord
   belongs_to :shipping_address, class_name: 'Address'
   belongs_to :delivery
   belongs_to :credit_card
-  has_many :orders_items, -> { order(created_at: :desc) }
+  has_many :orders_items, -> { order(created_at: :desc) }, dependent: :destroy
 
   before_save :set_total
+
+  delegate :empty?, to: :orders_items
 
   include AASM
 
@@ -43,4 +45,13 @@ class Order < ApplicationRecord
   def set_total
     self[:total] = orders_items.sum(&:total)
   end
+
+  def << (other)
+    other.orders_items.each do |item|
+      item.update_attribute(:order, self) unless orders_items.find_by_book_id(item.book_id)
+    end
+    other.reload.destroy
+    self
+  end
+
 end

@@ -5,22 +5,27 @@ class ApplicationController < ActionController::Base
   helper_method :current_order
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :init, if: :devise_controller?
+
+  def after_sign_in_path_for(resource_or_scope)
+    current_order_update
+    user_path
+  end
 
   def current_order
-    if session[:order_id].nil?
-      Order.new
-    else
-      Order.find(session[:order_id])
-    end
+    session[:order_id] ||= Order.create.id
+    Order.find(session[:order_id])
   end
 
   protected
 
-  def init
-    @user ||= User.new
-    @user.billing_address ||= Address.new
-    @user.shipping_address ||= Address.new
+  def current_order_update
+    user_order = current_user.orders.in_progress.last
+    if user_order.nil?
+      current_order.update_attribute(:user, current_user)
+    else
+      user_order << current_order
+      session[:order_id] = user_order.id
+    end
   end
 
   def configure_permitted_parameters
