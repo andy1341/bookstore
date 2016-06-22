@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(
         :use_billing_address,
+        :delivery_id,
         billing_address_attributes: Address.attributes_list,
         shipping_address_attributes: Address.attributes_list
     )

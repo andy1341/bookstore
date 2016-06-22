@@ -16,5 +16,6 @@ class CartsController < ApplicationController
   def set_var
     @order = current_order
     @orders_items = @order.orders_items
+    @deliveries = Delivery.all
   end
 end

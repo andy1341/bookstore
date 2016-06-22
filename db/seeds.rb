@@ -29,3 +29,7 @@ end
 CSV.read(File.expand_path 'db/seeds/books.csv').each do |book|
   Book.create(title:book[0], short_description: book[1], description: book[2], price: rand(1000), category_id:8, author_id:8)
 end
+
+Delivery.create(name:'Singapore Post', cost: 5)
+Delivery.create(name:'EMS', cost: 10)
+Delivery.create(name:'China Post Registered Air Mail', cost: 15)

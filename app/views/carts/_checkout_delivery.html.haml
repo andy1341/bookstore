@@ -1,0 +1,10 @@
+=form_for @order,remote:true, html: {method: :put, class:'form addresses'} do |f|
+  .row
+    .col-md-10.col-md-push-1
+      -@deliveries.each do |delivery|
+        .form-group
+          =f.radio_button :delivery_id, delivery.id
+          =f.label "delivery_id_#{delivery.id}", "#{delivery.name} - $#{delivery.cost}"
+  .row
+    .col-md-4.col-md-push-4
+      =f.submit 'Save and continue', class:'btn btn-block btn-success'

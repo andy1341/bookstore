@@ -45,7 +45,12 @@ class Order < ApplicationRecord
   end
 
   def set_total
-    self[:total] = orders_items.sum(&:total)
+    self[:total] = total
+  end
+
+  def total
+    total = orders_items.sum(&:total)
+    total += delivery.cost unless delivery.nil?
   end
 
   def << (other)

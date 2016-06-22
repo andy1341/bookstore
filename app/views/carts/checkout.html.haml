@@ -20,11 +20,4 @@
 .col-md-4
   %h3.text-center Order summary
   .order-summary
-    %table.table.table-striped.table-bordered
-      -@orders_items.each do |item|
-        =render 'checkout_cart_row', item: item
-      %tr
-        %td.text-right{colspan:2}
-          %b Total:
-        %td
-          =current_order.total
+    =render 'checkout_summary', order: @order

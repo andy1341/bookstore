@@ -1,0 +1,14 @@
+%table.table.table-striped.table-bordered
+  -order.orders_items.each do |item|
+    =render 'carts/checkout_cart_row', item: item
+  -unless order.delivery.nil?
+    %tr
+      %td.text-right{colspan:2}
+        %b Delivery cost:
+        %td
+          $#{order.delivery.cost}
+  %tr
+    %td.text-right{colspan:2}
+      %b Total:
+    %td
+      $#{order.total}
