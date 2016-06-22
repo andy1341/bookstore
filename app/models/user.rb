@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   belongs_to :billing_address, class_name: 'Address'
   belongs_to :shipping_address, class_name: 'Address'
+  has_many :orders, dependent: :destroy
 
   accepts_nested_attributes_for :billing_address
   accepts_nested_attributes_for :shipping_address

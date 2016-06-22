@@ -1,0 +1,4 @@
+-if @order.errors.any?
+  $('h1').after('#{escape_javascript(render 'shared/alert', message: @order.errors.to_a.join('<br>').html_safe)}')
+-else
+  $('.checkout .nav-tabs li').filter('.active').next('li').removeClass('disabled').find('a[data-toggle="tab"]').tab('show');

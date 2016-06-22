@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'orders_items/destroy'
 
-  # get 'carts/show'
+  get 'checkout' => 'carts#checkout', as: 'checkout'
 
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -19,5 +19,6 @@ Rails.application.routes.draw do
   resources :authors
   resource  :cart, only: [:show]
   resources :orders_items, only: [:create, :update, :destroy]
+  resources :orders, only: [:update]
 
 end

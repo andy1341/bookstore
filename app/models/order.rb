@@ -6,8 +6,10 @@ class Order < ApplicationRecord
   belongs_to :credit_card
   has_many :orders_items, -> { order(created_at: :desc) }, dependent: :destroy
 
-  before_save :set_total
+  accepts_nested_attributes_for :billing_address
+  accepts_nested_attributes_for :shipping_address
 
+  before_save :set_total
   delegate :empty?, to: :orders_items
 
   include AASM

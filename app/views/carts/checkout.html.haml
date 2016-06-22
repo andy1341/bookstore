@@ -1,0 +1,30 @@
+%h1 Checkout
+.col-md-8.checkout
+  %ul.nav.nav-tabs{role:"tablist"}
+    =tab_header 'address', true, true
+    =tab_header 'delivery', false
+    =tab_header 'payment', false
+    =tab_header 'confirm', false
+    =tab_header 'complete', false
+  %div.tab-content
+    %div.tab-pane.fade-in.active{role:"tabpanel", id:"address"}
+      = render 'carts/checkout_address'
+    %div.tab-pane.fade{role:"tabpanel", id:"delivery"}
+      = render 'carts/checkout_delivery'
+    %div.tab-pane.fade{role:"tabpanel", id:"payment"}
+      = render 'carts/checkout_payment'
+    %div.tab-pane.fade{role:"tabpanel", id:"confirm"}
+      = render 'carts/checkout_confirm'
+    %div.tab-pane.fade{role:"tabpanel", id:"complete"}
+      = render 'carts/checkout_complete'
+.col-md-4
+  %h3.text-center Order summary
+  .order-summary
+    %table.table.table-striped.table-bordered
+      -@orders_items.each do |item|
+        =render 'checkout_cart_row', item: item
+      %tr
+        %td.text-right{colspan:2}
+          %b Total:
+        %td
+          =current_order.total

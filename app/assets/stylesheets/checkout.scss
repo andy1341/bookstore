@@ -1,0 +1,26 @@
+.nav-tabs .disabled {
+  pointer-events: none;
+  color:#dedede
+}
+
+.order-summary {
+  table tr td{
+    vertical-align: middle;
+  }
+}
+
+.addresses {
+  .billing-address {
+    margin-top:3em;
+  }
+
+  .shipping-address {
+    transition-duration: 1s;
+    position: static;
+    overflow: hidden;
+    max-height:40em;
+  }
+  #order_use_billing_address:checked ~ .shipping-address {
+    max-height:0;
+  }
+}

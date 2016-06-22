@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_order
 
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_device, if: :devise_controller?
 
   def after_sign_in_path_for(resource_or_scope)
     current_order_update
@@ -28,14 +28,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:account_update, keys: [
-        :id, billing_address_attributes: address_attributes,
-        shipping_address_attributes: address_attributes
-    ])
-  end
+  def configure_device
+    @user ||= User.new
+    @user.billing_address ||= Address.new
+    @user.shipping_address ||= Address.new
 
-  def address_attributes
-    [:id, :firstname,:lastname, :street_address, :city, :zip, :phone, :country_id]
+    devise_parameter_sanitizer.permit(:account_update, keys: [
+        :id, billing_address_attributes: Address.attributes_list,
+        shipping_address_attributes: Address.attributes_list
+    ])
   end
 end
