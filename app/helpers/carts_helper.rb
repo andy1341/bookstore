@@ -6,8 +6,15 @@ module CartsHelper
   def tab_header(name, enable = true, active = false)
     result = <<HTML
 <li role="presentation" class="#{active ? 'active ' : ''}#{enable ? '' : 'disabled'}">
-  <a href="##{name}" aria-controls="#{name}" role="tab" data-toggle='tab' >#{name.humanize}</a>
+  #{tab_href(name.humanize,name)}
 </li>
+HTML
+    result.html_safe
+  end
+
+  def tab_href(content, name)
+    result = <<HTML
+    <a href="##{name}" aria-controls="#{name}" role="tab" data-toggle='tab' >#{content}</a>
 HTML
     result.html_safe
   end

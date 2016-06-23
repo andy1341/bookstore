@@ -4,36 +4,31 @@
   .row
     .col-md-3
       %h3 Shipping Address
-      =button_tag(tag('span',class:'glyphicon glyphicon-edit'),class:'btn btn-link')
+      -unless complited
+        =button_tag(icon('edit'),class:'btn btn-link tab-link',id:'address')
       .info
         -if @order.use_billing_address
           Ship to billing address
         -else
-          %span= @order.shipping_address.full_name
-          %span= @order.shipping_address.street
-          %span= "#{@order.shipping_address.city} #{@order.shipping_address.zip}"
-          %span= @order.shipping_address.country
-          %span= "Phone #{@order.shipping_address.phone}"
+          =render 'addresses/view', address: @order.shipping_address
     .col-md-3
       %h3 Billing Address
-      =button_tag(tag('span',class:'glyphicon glyphicon-edit'),class:'btn btn-link')
+      -unless complited
+        =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'address')
       .info
-        %div= @order.billing_address.full_name
-        %div= @order.billing_address.street
-        %div= "#{@order.billing_address.city} #{@order.billing_address.zip}"
-        %div= @order.billing_address.country
-        %div= "Phone #{@order.billing_address.phone}"
+        =render 'addresses/view', address: @order.billing_address
     .col-md-3
       %h3 Shipments
-      =button_tag(tag('span',class:'glyphicon glyphicon-edit'),class:'btn btn-link')
+      -unless complited
+        =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'delivery')
       .info
         =@order.delivery.name
     .col-md-3
       %h3 Payments
-      =button_tag(tag('span',class:'glyphicon glyphicon-edit'),class:'btn btn-link')
+      -unless complited
+        =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'payment')
       .info
-        %div
-          **** **** **** #{@order.credit_card.number.to_s.last(4)}
+        =render 'credit_cards/view', card: @order.credit_card
   .row
     .col-md-4.col-md-push-4
       -if complited

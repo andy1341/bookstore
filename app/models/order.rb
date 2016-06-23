@@ -5,7 +5,9 @@ class Order < ApplicationRecord
   belongs_to :delivery
   belongs_to :credit_card
   has_many :orders_items, -> { order(created_at: :desc) }, dependent: :destroy
-
+  scope :shipped, -> {where(status:'shipped')}
+  scope :completed, -> {where(status:'completed')}
+  scope :cancelled, -> {where(status:'cancelled')}
   accepts_nested_attributes_for :billing_address
   accepts_nested_attributes_for :shipping_address
   accepts_nested_attributes_for :credit_card
