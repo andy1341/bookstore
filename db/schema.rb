@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160622111518) do
+ActiveRecord::Schema.define(version: 20160622131817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,10 +95,10 @@ ActiveRecord::Schema.define(version: 20160622111518) do
   end
 
   create_table "credit_cards", force: :cascade do |t|
-    t.decimal  "number"
-    t.decimal  "expiration_month"
-    t.decimal  "expiration_year"
-    t.decimal  "code"
+    t.bigint   "number"
+    t.bigint   "expiration_month"
+    t.bigint   "expiration_year"
+    t.bigint   "code"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -106,10 +106,8 @@ ActiveRecord::Schema.define(version: 20160622111518) do
   create_table "deliveries", force: :cascade do |t|
     t.string   "name"
     t.decimal  "cost"
-    t.integer  "cart_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cart_id"], name: "index_deliveries_on_cart_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
@@ -157,7 +155,9 @@ ActiveRecord::Schema.define(version: 20160622111518) do
     t.datetime "updated_at",                          null: false
     t.integer  "billing_address_id"
     t.integer  "shipping_address_id"
+    t.integer  "credit_card_id"
     t.index ["billing_address_id"], name: "index_users_on_billing_address_id", using: :btree
+    t.index ["credit_card_id"], name: "index_users_on_credit_card_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["shipping_address_id"], name: "index_users_on_shipping_address_id", using: :btree
@@ -168,4 +168,5 @@ ActiveRecord::Schema.define(version: 20160622111518) do
   add_foreign_key "books", "categories"
   add_foreign_key "orders_items", "books"
   add_foreign_key "orders_items", "orders"
+  add_foreign_key "users", "credit_cards"
 end

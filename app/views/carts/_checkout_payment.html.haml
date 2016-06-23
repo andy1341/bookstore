@@ -1,0 +1,4 @@
+%h3 Credit card
+=form_for @order,remote:true, html: {method: :put, class:'form addresses'} do |f|
+  =f.hidden_field 'next_step', value: :confirm
+  =render 'credit_cards/form', card: :credit_card, form: f

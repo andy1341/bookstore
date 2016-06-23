@@ -1,0 +1,20 @@
+=form.fields_for card do |f|
+  .form-group
+    = f.label :number
+    = f.text_field :number, class: 'form-control'
+  .form-group
+    .row
+      .col-md-6
+        = f.label :expiration_month
+        %br
+        = f.select :expiration_month, CreditCard.months, class: 'form-control'
+      .col-md-6
+        = f.label :expiration_year
+        %br
+        = f.select :expiration_year, CreditCard.years, class: 'form-control'
+  .form-group
+    = f.label :code, "Cart code"
+    = f.text_field :code
+  .row
+    .col-md-4.col-md-push-4
+      =f.submit 'Save and continue', class:'btn btn-block btn-success'

@@ -8,26 +8,19 @@ class Order < ApplicationRecord
 
   accepts_nested_attributes_for :billing_address
   accepts_nested_attributes_for :shipping_address
+  accepts_nested_attributes_for :credit_card
 
   before_save :set_total
   delegate :empty?, to: :orders_items
 
   include AASM
 
-  enum status: {
-      in_progress: 1,
-      awaiting_shipment: 2,
-      shipped: 3,
-      completed: 4,
-      cancelled: 5
-  }
-
-  aasm :column => :status, :enum => true do
-    state :in_progress, :initial => true
+  aasm :column => :status, :whiny_transitions => false do
+    state :in_progress, initial: true
     state :awaiting_shipment, :shipped, :completed, :cancelled
 
     event :make_order do
-      transitions from: :in_progress, to: :awaiting_shipment
+      transitions from: :in_progress, to: :awaiting_shipment, guard: :can_make_order?
     end
 
     event :shipped do
@@ -35,7 +28,7 @@ class Order < ApplicationRecord
     end
 
     event :complete do
-      transitions from: :shipped, to: :completed
+      transitions from: :shipped, to: :completed, success: :mark_complete
     end
 
     event :cancel do
@@ -44,13 +37,31 @@ class Order < ApplicationRecord
 
   end
 
+  def can_make_order?
+    errors.add(:base, "Order already done") unless in_progress?
+    errors.add(:user, :blank) if user.blank?
+    errors.add(:billing_address, :blank) if billing_address.blank?
+    errors.add(:shipping_address, :blank) if !use_billing_address && shipping_address.blank?
+    errors.add(:delivery, :blank) if delivery.blank?
+    errors.add(:credit_card, :blank) if credit_card.blank?
+    errors.add(:orders_items, :blank) if orders_items.blank?
+    errors.empty?
+  end
+
+  def mark_complete
+    update(completed: Date.today)
+  end
+
   def set_total
     self[:total] = total
   end
 
+  def subtotal
+    orders_items.sum(&:total)
+  end
+
   def total
-    total = orders_items.sum(&:total)
-    total += delivery.cost unless delivery.nil?
+    delivery.nil? ? subtotal : subtotal+delivery.cost
   end
 
   def << (other)

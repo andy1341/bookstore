@@ -1,4 +1,5 @@
 =form_for @order,remote:true, html: {method: :put, class:'form addresses'} do |f|
+  =f.hidden_field 'next_step', value: :delivery
   .row
     .col-md-6
       %h3 Billing Address
@@ -6,7 +7,7 @@
         =render 'addresses/form', address: :billing_address, form: f
     .col-md-6
       %h3 Shipping Address
-      =f.check_box :use_billing_address, checked:false
+      =f.check_box :use_billing_address
       =f.label :use_billing_address, "Use billing address"
       .shipping-address
         =render 'addresses/form', address: :shipping_address, form: f

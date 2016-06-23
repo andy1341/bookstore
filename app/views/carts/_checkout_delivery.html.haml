@@ -1,4 +1,5 @@
 =form_for @order,remote:true, html: {method: :put, class:'form addresses'} do |f|
+  =f.hidden_field 'next_step', value: :payment
   .row
     .col-md-10.col-md-push-1
       -@deliveries.each do |delivery|
