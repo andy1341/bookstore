@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :set_order
 
   def update
+    @order = current_order
     @next_step = params[:order][:next_step]
     params[:order][:use_billing_address] ||= @order.use_billing_address
     params[:order][:use_billing_address] = ["1",true].include? params[:order][:use_billing_address]
@@ -17,10 +17,11 @@ class OrdersController < ApplicationController
     end
   end
 
-  private
-  def set_order
-    @order = current_order
+  def show
+    @order = Order.find_by_id(params[:id])
   end
+
+  private
   def order_params
     params.require(:order).permit(
         :use_billing_address,

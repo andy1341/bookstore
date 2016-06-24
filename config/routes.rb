@@ -20,6 +20,6 @@ Rails.application.routes.draw do
   resources :authors
   resource  :cart, only: [:show]
   resources :orders_items, only: [:create, :update, :destroy]
-  resources :orders, only: [:update]
+  resources :orders, only: [:update,:show]
 
 end

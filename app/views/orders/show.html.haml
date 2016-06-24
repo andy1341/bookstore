@@ -1,0 +1,29 @@
+.order-show
+  %h2 Order ##{@order.id}
+  .status= @order.status.humanize
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+        %th Book
+        %th Price
+        %th Quantity
+        %th Total
+    %tbody
+      =render partial: 'orders/orders_item', collection: @order.orders_items
+      %tr
+        %td.text-right{colspan:4}
+          %b Subtotal:
+        %td.text-left
+          %b $#{@order.subtotal}
+      -if @order.delivery.present?
+        %tr
+          %td.text-right{colspan:4}
+            %b Shipping
+          %td.text-left
+            %b $#{@order.delivery.cost}
+      %tr
+        %td.text-right{colspan:4}
+          %b Total:
+        %td.text-left
+          %b $#{@order.total}
