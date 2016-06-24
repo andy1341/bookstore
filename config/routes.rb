@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'checkout' => 'carts#checkout', as: 'checkout'
   patch 'orders/make_order' => 'orders#make_order', as: 'make_order'
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks",  registrations: 'users/registrations' }
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root 'home#index'

@@ -2,9 +2,9 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  helper_method :current_order
+  helper_method :current_order, :set_user
 
-  before_action :configure_device, if: :devise_controller?
+  before_action :configure_device, if: :devise_controller? || :registrations_controller?
 
   def after_sign_in_path_for(resource_or_scope)
     current_order_update
@@ -40,11 +40,7 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_device
-    @user ||= User.new
-    @user.billing_address ||= Address.new
-    @user.shipping_address ||= Address.new
-    @user.credit_card ||= CreditCard.new
-
+    set_user
     if params[:user]
       params[:user].delete(:shipping_address_attributes) if empty_address?(:shipping)
       params[:user].delete(:billing_address_attributes) if empty_address?(:billing)
@@ -58,13 +54,20 @@ class ApplicationController < ActionController::Base
         ])
   end
 
+  def set_user
+    @user ||= User.new
+    @user.billing_address ||= Address.new
+    @user.shipping_address ||= Address.new
+    @user.credit_card ||= CreditCard.new
+  end
+
   def empty_address?(type)
     params.require(:user).fetch(:"#{type}_address_attributes",{})
         .permit([:firstname,:lastname,:street_address,:city,:zip,:phone]).values.all?(&:empty?)
   end
 
   def empty_card?
-    params[:user][:credit_card_attributes][:number].empty? if params[:user][:credit_card_attributes]
+    return params[:user][:credit_card_attributes][:number].empty? if params[:user][:credit_card_attributes]
     false
   end
 end

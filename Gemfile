@@ -42,6 +42,7 @@ gem 'devise'
 
 gem 'aasm'
 gem 'kaminari'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'pry'
