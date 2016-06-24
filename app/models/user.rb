@@ -12,4 +12,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :billing_address
   accepts_nested_attributes_for :shipping_address
   accepts_nested_attributes_for :credit_card
+
+  def current_order
+    orders.in_progress.last if orders.in_progress
+  end
 end

@@ -16,7 +16,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order
-    order = Order.find_by_id(session[:order_id])
+    order = current_user.current_order if current_user
+    order ||= Order.find_by_id(session[:order_id])
     order || new_session_order
   end
 
