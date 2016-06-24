@@ -41,9 +41,12 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 
 gem 'aasm'
+gem 'kaminari'
 
 group :development, :test do
   gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-doc'
 end
 
 group :development do
