@@ -42,4 +42,7 @@
                 %li
                   =link_to t('menu.signup'), new_user_registration_path
     .container
+      -unless breadcrumbs.empty?
+        %ol.breadcrumb
+          =render_breadcrumbs :tag => :li, :separator => ""
       = yield

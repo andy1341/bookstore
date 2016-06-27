@@ -1,13 +1,17 @@
 class BooksController < ApplicationController
+  prepend_before_action :set_book
 
   def show
-    @book = Book.find(params[:id])
     @orders_item = current_order.orders_items.new
   end
 
   private
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def book_params
-      params.require(:book).permit(:title, :short_description, :description, :author_id, :category_id, :price, :image)
-    end
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb 'Home', '/'
+    add_breadcrumb @book.category.name, category_path(@book.category)
+  end
 end

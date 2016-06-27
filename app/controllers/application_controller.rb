@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_order, :set_user
 
   before_action :configure_device, if: :devise_controller? || :registrations_controller?
+  before_action :set_breadcrumbs
 
   def after_sign_in_path_for(resource_or_scope)
     current_order_update
@@ -69,5 +70,10 @@ class ApplicationController < ActionController::Base
   def empty_card?
     return params[:user][:credit_card_attributes][:number].empty? if params[:user][:credit_card_attributes]
     false
+  end
+
+  private
+  def set_breadcrumbs
+
   end
 end
