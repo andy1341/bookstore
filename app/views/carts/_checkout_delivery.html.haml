@@ -6,6 +6,4 @@
         .form-group
           =f.radio_button :delivery_id, delivery.id
           =f.label "delivery_id_#{delivery.id}", "#{delivery.name} - $#{delivery.cost}"
-  .row
-    .col-md-4.col-md-push-4
-      =f.submit 'Save and continue', class:'btn btn-block btn-success'
+  =render 'checkout_continue_btn', f:f

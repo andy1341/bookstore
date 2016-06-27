@@ -1,0 +1,40 @@
+en:
+  carts:
+    show:
+      title: 'Cart'
+      empty: 'There is no books in your cart'
+    cart_content:
+      book: 'Book'
+      price: 'Price'
+      quantity: 'Quantity'
+      total: 'Total'
+      make-order: 'Make order'
+    add_btn:
+      text: 'Go to the cart'
+    checkout:
+      tab-address: 'Address'
+      tab-delivery: 'Delivery'
+      tab-payment: 'Payment'
+      tab-confirm: 'Confirm'
+      tab-complete: 'Complete'
+      summary: 'Order summary'
+    checkout_address:
+      billing: 'Billing Address'
+      shipping: 'Shipping Address'
+      use-btn: 'Use billing address'
+    checkout_continue_btn:
+      text: 'Save and continue'
+    checkout_payment:
+      title: 'Credit Card'
+    checkout_confirm:
+      title:
+        complited: 'Complited'
+        confirm: 'Confirm'
+      ship_to_billing: 'Ship to billing address'
+      btn_text:
+        complited: 'Go back to the store'
+        comfirm: 'Make order'
+    checkout_summary:
+      subtotal: 'Subtotal:'
+      total: 'Total:'
+      delivery: 'Delivery cost'

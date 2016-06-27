@@ -1,20 +1,20 @@
 .row
   .col-md-10.col-md-push-1
-    %b Email:
+    %b= t '.title.email'
     %span= @user.email
 .row
   .col-md-1
   -if @user.billing_address
     .col-md-3
-      %h3 Billing Address
+      %h3= t '.title.billing'
       =render 'addresses/view', address: @user.billing_address
 
   -if @user.shipping_address
     .col-md-3
-      %h3 Shipping Address
+      %h3= t '.title.shipping'
       =render 'addresses/view', address: @user.shipping_address
 
   -if @user.credit_card
     .col-md-3
-      %h3 Credit card
+      %h3= t '.title.credit'
       =render 'credit_cards/view', card: @user.credit_card

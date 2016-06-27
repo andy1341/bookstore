@@ -20,8 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  home: 'Home'
-  shop: 'Shop'
-  cart: 'Cart'
-  signup: 'Sign UP'
+  title: 'Bookstore'
+  menu:
+    categories: 'Categories'
+    cart: 'Cart'
+    signin: 'Sign In'
+    signup: 'Sign Up'
+    logout: 'Log Out'
+    profile: 'Profile'

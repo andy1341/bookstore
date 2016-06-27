@@ -3,10 +3,10 @@ module CartsHelper
     current_order.orders_items.map(&:book).include? book
   end
 
-  def tab_header(name, enable = true, active = false)
+  def tab_header(name, title, enable = true, active = false)
     result = <<HTML
 <li role="presentation" class="#{active ? 'active ' : ''}#{enable ? '' : 'disabled'}">
-  #{tab_href(name.humanize,name)}
+  #{tab_href(title,name)}
 </li>
 HTML
     result.html_safe

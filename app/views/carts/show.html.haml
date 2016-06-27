@@ -1,8 +1,8 @@
-%h1 Cart
+%h1= t '.title'
 
 -if @orders_items.empty?
   .container.cart-content.text-center
-    %h2 There is no books in your cart
+    %h2= t '.empty'
 -else
   .container.cart-content
     =render 'carts/cart_content'

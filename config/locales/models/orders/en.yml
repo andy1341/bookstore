@@ -1,0 +1,10 @@
+en:
+  activerecord:
+    attributes:
+      order:
+        status:
+          in_progress: 'In progress'
+          awaiting_shipment: 'Awaiting shipment'
+          shipped: 'Shipped'
+          completed: 'Completed'
+          cancelled: 'Cancelled'

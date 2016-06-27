@@ -2,10 +2,10 @@
   %thead
     %tr
       %th
-      %th BOOK
-      %th PRICE
-      %th Quantity
-      %th TOTAL
+      %th= t '.book'
+      %th= t '.price'
+      %th= t '.quantity'
+      %th= t '.total'
       %th
   %tbody
     -@orders_items.each do |item|
@@ -16,4 +16,4 @@
         %b
           $#{current_order.total}
 .col-md-4.col-md-push-4
-  =link_to "Make order", checkout_path, class: 'btn btn-success btn-block'
+  =link_to t('.make-order'), checkout_path, class: 'btn btn-success btn-block'

@@ -1,5 +1,5 @@
 -if in_cart book
-  =link_to 'To cart', cart_path, class: 'btn btn-primary to-cart'
+  =link_to t('.text'), cart_path, class: 'btn btn-primary to-cart'
 -else
   = form_for orders_item, remote: true, html: {class:'add-to-cart form form-inline'} do |f|
     .input-group

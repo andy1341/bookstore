@@ -13,8 +13,5 @@
         %br
         = f.select :expiration_year, CreditCard.years, class: 'form-control'
   .form-group
-    = f.label :code, "Cart code"
+    = f.label :code
     = f.text_field :code
-  .row
-    .col-md-4.col-md-push-4
-      =f.submit 'Save and continue', class:'btn btn-block btn-success'

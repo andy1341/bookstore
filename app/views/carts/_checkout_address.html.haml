@@ -2,15 +2,13 @@
   =f.hidden_field 'next_step', value: :delivery
   .row
     .col-md-6
-      %h3 Billing Address
+      %h3= t('.billing')
       .billing-address
         =render 'addresses/form', address: :billing_address, form: f
     .col-md-6
-      %h3 Shipping Address
+      %h3= t('.shipping')
       =f.check_box :use_billing_address
-      =f.label :use_billing_address, "Use billing address"
+      =f.label :use_billing_address, t('.use-btn')
       .shipping-address
         =render 'addresses/form', address: :shipping_address, form: f
-  .row
-    .col-md-4.col-md-push-4
-      =f.submit 'Save and continue', class:'btn btn-block btn-success'
+  =render 'checkout_continue_btn', f:f

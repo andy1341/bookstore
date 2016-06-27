@@ -1,30 +1,30 @@
 .confirm
   .row
-    %h2= complited ? 'Complited' : 'Confirm'
+    %h2= complited ? t('.title.complited') : t('.title.confirm')
   .row
     .col-md-3
-      %h3 Shipping Address
+      %h3= t('carts.checkout_address.shipping')
       -unless complited
         =button_tag(icon('edit'),class:'btn btn-link tab-link',id:'address')
       .info
         -if @order.use_billing_address
-          Ship to billing address
+          =t('.ship_to_billing')
         -else
           =render 'addresses/view', address: @order.shipping_address
     .col-md-3
-      %h3 Billing Address
+      %h3= t('carts.checkout_address.billing')
       -unless complited
         =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'address')
       .info
         =render 'addresses/view', address: @order.billing_address
     .col-md-3
-      %h3 Shipments
+      %h3= t('carts.checkout.tab-delivery')
       -unless complited
         =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'delivery')
       .info
         =@order.delivery.name
     .col-md-3
-      %h3 Payments
+      %h3= t('carts.checkout.tab-payment')
       -unless complited
         =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'payment')
       .info
@@ -32,7 +32,7 @@
   .row
     .col-md-4.col-md-push-4
       -if complited
-        =link_to "Go back to the store", root_path, class:'btn btn-block btn-success'
+        =link_to t('.btn_text.complited'), root_path, class:'btn btn-block btn-success'
       -else
         =form_tag make_order_url, remote: true, method: :patch, class:'form' do
-          =submit_tag "Make Order", class:'btn btn-success btn-block'
+          =submit_tag t('.btn_text.comfirm'), class:'btn btn-success btn-block'

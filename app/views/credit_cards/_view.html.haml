@@ -1,6 +1,6 @@
 %div
-  %b Number:
+  %b= t '.number'
   **** **** **** #{card.number.to_s.last(4)}
 %div
-  %b Expiration date:
+  %b= t '.date'
   ="#{card.expiration_month}/#{card.expiration_year}"

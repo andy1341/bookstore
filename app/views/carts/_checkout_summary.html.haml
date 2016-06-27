@@ -4,17 +4,17 @@
   %tr
     %tr
       %td.text-right{colspan:2}
-        %b Subtotal:
+        %b= t('.subtotal')
         %td
           $#{order.subtotal}
   -unless order.delivery.nil?
     %tr
       %td.text-right{colspan:2}
-        %b Delivery cost:
+        %b= t '.delivery'
         %td
           $#{order.delivery.cost}
   %tr
     %td.text-right{colspan:2}
-      %b Total:
+      %b= t '.total'
     %td
       $#{order.total}

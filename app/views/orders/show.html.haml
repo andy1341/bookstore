@@ -1,29 +1,29 @@
 .order-show
-  %h2 Order ##{@order.id}
-  .status= @order.status.humanize
+  %h2= t '.title', id:@order.id
+  .status= t "activerecord.attributes.order.status.#{@order.status}"
   %table.table.table-striped
     %thead
       %tr
         %th
-        %th Book
-        %th Price
-        %th Quantity
-        %th Total
+        %th= t '.th.book'
+        %th= t '.th.price'
+        %th= t '.th.quantity'
+        %th= t '.th.total'
     %tbody
       =render partial: 'orders/orders_item', collection: @order.orders_items
       %tr
         %td.text-right{colspan:4}
-          %b Subtotal:
+          %b= t '.subtotal'
         %td.text-left
           %b $#{@order.subtotal}
       -if @order.delivery.present?
         %tr
           %td.text-right{colspan:4}
-            %b Shipping
+            %b= t '.shipping'
           %td.text-left
             %b $#{@order.delivery.cost}
       %tr
         %td.text-right{colspan:4}
-          %b Total:
+          %b= t '.total'
         %td.text-left
           %b $#{@order.total}

@@ -1,9 +1,11 @@
 =form_for item, remote: true do |f|
   %tr.order-item
     %td
-      =image_tag item.book.image, height: '100px'
+      =link_to item.book do
+        =image_tag item.book.image, height: '100px'
     %td
-      =item.book.title
+      =link_to item.book do
+        =item.book.title
     %td
       $#{item.cost}
     %td

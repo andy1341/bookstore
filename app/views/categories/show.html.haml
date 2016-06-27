@@ -8,6 +8,6 @@
       -@books.each do |book|
         =render 'book', book: book
 -else
-  %p There is no books
+  %p= t '.empty'
 
 =paginate @books
