@@ -15,5 +15,5 @@
           =render 'carts/add_btn', orders_item: @orders_item, book: @book
       .row.description
         =@book.description
-  .row
-    %h2 Reviews
+  .row.reviews
+    =render 'books/reviews'

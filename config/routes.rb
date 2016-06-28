@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'orders_items/create'
-
-  get 'orders_items/update'
-
-  get 'orders_items/destroy'
-
   get 'checkout' => 'carts#checkout', as: 'checkout'
   patch 'orders/make_order' => 'orders#make_order', as: 'make_order'
 
@@ -17,9 +11,10 @@ Rails.application.routes.draw do
   get 'users/show', as: 'user'
   resources :books, only: [:show]
   resources :categories, only: [:show]
-  resources :authors
+  resources :authors, only: [:show]
   resource  :cart, only: [:show]
   resources :orders_items, only: [:create, :update, :destroy]
   resources :orders, only: [:update,:show]
+  resources :reviews, only: [:create]
 
 end

@@ -44,6 +44,7 @@ gem 'aasm'
 gem 'kaminari'
 gem 'omniauth-facebook'
 gem 'breadcrumbs_on_rails'
+gem 'jquery-star-rating-rails'
 
 group :development, :test do
   gem 'pry'

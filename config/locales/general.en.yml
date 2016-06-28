@@ -20,6 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  time:
+    formats:
+      short: '%Y-%M-%d %H:%M'
   title: 'Bookstore'
   menu:
     categories: 'Categories'
