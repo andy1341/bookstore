@@ -1,6 +1,6 @@
 .order-show
   %h2= t '.title', id:@order.id
-  .status= t "activerecord.attributes.order.status.#{@order.status}"
+  .status= @order.status
   %table.table.table-striped
     %thead
       %tr

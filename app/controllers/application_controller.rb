@@ -8,8 +8,12 @@ class ApplicationController < ActionController::Base
   before_action :set_breadcrumbs
 
   def after_sign_in_path_for(resource_or_scope)
-    current_order_update
-    checkout_path
+    if is_a?(ActiveAdmin::Devise::SessionsController)
+      super
+    else
+      current_order_update
+      checkout_path
+    end
   end
 
   def after_acount_update_path_for(resource_or_scope)
