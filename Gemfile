@@ -38,6 +38,7 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 #admin
 gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin_addons'
 gem 'devise'
 
 gem 'aasm'

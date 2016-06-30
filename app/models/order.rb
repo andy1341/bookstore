@@ -6,6 +6,8 @@ class Order < ApplicationRecord
   belongs_to :credit_card
   has_many :orders_items, -> { order(created_at: :desc) }, dependent: :destroy
 
+  attr_accessor :active_admin_requested_event
+
   accepts_nested_attributes_for :billing_address
   accepts_nested_attributes_for :shipping_address
   accepts_nested_attributes_for :credit_card
@@ -37,7 +39,7 @@ class Order < ApplicationRecord
     end
 
     event :cancel do
-      transitions from: [:in_progress, :awaiting_shipment, :shipped]
+      transitions from: [:in_progress, :awaiting_shipment, :shipped], to: :cancelled
     end
 
   end
@@ -54,7 +56,7 @@ class Order < ApplicationRecord
   end
 
   def mark_complete
-    update(completed: Date.today)
+    update(completed_date: Date.today)
   end
 
   def set_total
