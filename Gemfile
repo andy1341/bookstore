@@ -47,6 +47,8 @@ gem 'omniauth-facebook'
 gem 'breadcrumbs_on_rails'
 gem 'jquery-star-rating-rails'
 
+gem 'draper', git:'https://github.com/drapergem/draper', branch: 'rails-5'
+
 group :development, :test do
   gem 'pry'
   gem 'pry-rails'

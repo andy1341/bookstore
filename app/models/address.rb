@@ -4,10 +4,6 @@ class Address < ApplicationRecord
 
   alias_attribute :street, :street_address
 
-  def full_name
-    "#{firstname} #{lastname}"
-  end
-
   def self.attributes_list
     [:id, :firstname,:lastname, :street_address, :city, :zip, :phone, :country_id]
   end

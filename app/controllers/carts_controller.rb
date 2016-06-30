@@ -22,7 +22,7 @@ class CartsController < ApplicationController
   private
 
   def set_var
-    @order = current_order
+    @order = current_order.decorate
     @orders_items = @order.orders_items
     @deliveries = Delivery.all
   end

@@ -1,5 +1,6 @@
 ActiveAdmin.register Order do
   permit_params :order, :status
+  decorate_with OrderDecorator
 
   after_save do |order|
     event = params[:order][:active_admin_requested_event]
@@ -15,9 +16,7 @@ ActiveAdmin.register Order do
   index do
     selectable_column
     id_column
-    column :user do |order|
-      (order.user && order.user.email)|| '----'
-    end
+    column :user do |o| o.user end
     state_column :status
     column :completed_date
     column :delivery
@@ -28,15 +27,15 @@ ActiveAdmin.register Order do
   show do
     attributes_table do
       state_row :status
-      row :user do |order|
-        (order.user && order.user.email)|| '----'
-      end
+      row :user
       row :completed_date
       row :delivery
       row :created_at
-      row :billing_address
-      row :shipping_address do |order|
-        order.use_billing_address ? "Ship to billing addres" : order.shipping_address
+      row :billing_address do |o|
+        o.billing_address
+      end
+      row :shipping_address do |o|
+        o.shipping_address
       end
       row :credit_card
       row :total
@@ -48,7 +47,7 @@ ActiveAdmin.register Order do
       # display current state as disabled to avoid modifying it directly
       f.input :status, input_html: { disabled: true }, label: 'Current state'
 
-      unless f.object.in_progress?
+      unless f.object.in_progress? || f.object.cancelled?
         # use the attr_accessor to pass the data
         f.input :active_admin_requested_event, label: 'Change state', as: :select, collection: f.object.aasm.events(permitted: true).map(&:name)
       end

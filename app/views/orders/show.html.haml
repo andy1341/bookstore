@@ -1,6 +1,6 @@
 .order-show
   %h2= t '.title', id:@order.id
-  .status= @order.status
+  .status= @order.status.humanize
   %table.table.table-striped
     %thead
       %tr
