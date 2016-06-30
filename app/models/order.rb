@@ -5,9 +5,7 @@ class Order < ApplicationRecord
   belongs_to :delivery
   belongs_to :credit_card
   has_many :orders_items, -> { order(created_at: :desc) }, dependent: :destroy
-  scope :shipped, -> {where(status:'shipped')}
-  scope :completed, -> {where(status:'completed')}
-  scope :cancelled, -> {where(status:'cancelled')}
+
   accepts_nested_attributes_for :billing_address
   accepts_nested_attributes_for :shipping_address
   accepts_nested_attributes_for :credit_card
@@ -15,11 +13,16 @@ class Order < ApplicationRecord
   before_save :set_total
   delegate :empty?, to: :orders_items
 
+  enum status: [:in_progress, :awaiting_shipment, :shipped, :completed, :cancelled]
+
   include AASM
 
-  aasm :column => :status, :whiny_transitions => false do
+  aasm :column => :status, enum:true, :whiny_transitions => false do
     state :in_progress, initial: true
-    state :awaiting_shipment, :shipped, :completed, :cancelled
+    state :awaiting_shipment
+    state :shipped
+    state :completed
+    state :cancelled
 
     event :make_order do
       transitions from: :in_progress, to: :awaiting_shipment, guard: :can_make_order?

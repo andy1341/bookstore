@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration[5.0]
     create_table :orders do |t|
       t.decimal :total
       t.date :completed_date
-      t.string :status
+      t.integer :status
       t.belongs_to :user
       t.belongs_to :billing_address
       t.belongs_to :shipping_address
