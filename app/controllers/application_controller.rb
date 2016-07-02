@@ -30,8 +30,8 @@ class ApplicationController < ActionController::Base
     end
 
     devise_parameter_sanitizer.permit(:account_update, keys: [
-        :id, billing_address_attributes: Address.attributes_list,
-        shipping_address_attributes: Address.attributes_list,
+        :id, billing_address_attributes: Address.attribute_names,
+        shipping_address_attributes: Address.attribute_names,
         credit_card_attributes: [:number, :code, :expiration_month, :expiration_year]
         ])
   end

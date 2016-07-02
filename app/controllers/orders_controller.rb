@@ -29,8 +29,8 @@ class OrdersController < ApplicationController
     params.require(:order).permit(
         :use_billing_address,
         :delivery_id,
-        billing_address_attributes: Address.attributes_list,
-        shipping_address_attributes: Address.attributes_list,
+        billing_address_attributes: Address.attribute_names,
+        shipping_address_attributes: Address.attribute_names,
         credit_card_attributes: [
             :number,
             :code,
