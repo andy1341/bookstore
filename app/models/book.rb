@@ -5,5 +5,5 @@ class Book < ApplicationRecord
 
   mount_uploader :image, ImageUploader
   validates :title, uniqueness: true
-  validates :price, :category_id, :author_id, presence: true
+  validates :title, :price, :category, :author, presence: true
 end

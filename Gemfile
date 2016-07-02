@@ -26,9 +26,7 @@ gem 'jbuilder', '~> 2.0'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
 gem 'haml'
-gem 'rspec'
 # uploader
 gem 'carrierwave'
 gem 'mini_magick'
@@ -53,11 +51,18 @@ group :development, :test do
   gem 'pry'
   gem 'pry-rails'
   gem 'pry-doc'
+  gem 'rspec-rails'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'ffaker'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
+  gem 'capistrano-rails'
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
