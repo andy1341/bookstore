@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   include Facebook
 
-  def current_order
+  def order_in_progress
     orders.in_progress.last if orders.in_progress
   end
 

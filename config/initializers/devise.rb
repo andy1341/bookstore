@@ -265,4 +265,15 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+  Warden::Manager.after_authentication scope: :user do |user,auth,opts|
+
+    session_order = Order.find_by_id(auth.raw_session[:order_id])
+
+    if user.order_in_progress.nil?
+      session_order.update_attribute(:user, user)
+    else
+      user.order_in_progress << session_order
+      auth.raw_session[:order_id] = user.order_in_progress.id
+    end
+  end
 end
