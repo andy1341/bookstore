@@ -12,10 +12,21 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :shipping_address
   accepts_nested_attributes_for :credit_card
 
-  include Facebook
+  include Facebookable
 
   def order_in_progress
     orders.in_progress.last if orders.in_progress
   end
 
+  def billing_address
+    super || Address.new
+  end
+
+  def shipping_address
+    super || Address.new
+  end
+
+  def credit_card
+    super || CreditCard.new
+  end
 end

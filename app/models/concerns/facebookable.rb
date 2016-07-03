@@ -1,4 +1,4 @@
-module Facebook
+module Facebookable
   extend ActiveSupport::Concern
 
   def is_facebook_account
@@ -9,12 +9,13 @@ module Facebook
     self[:provider] == provider && self[:uid] == uid
   end
 
-  def sign_in_with_facebook(params)
+  def save_facebook_data(params)
     if is_facebook_account
       return true if check_facebook(params[:provider], params[:uid])
       errors.add(:base, "#{params[:email]} is attach for another account")
+      false
     else
-      user.update(params)
+      update(params)
     end
   end
 
@@ -30,13 +31,13 @@ module Facebook
       user = find_by_email(auth_params[:email])
 
       if user.present?
-        user.sign_in_with_facebook(auth_params) ?
-            user :
-            nil
+        return nil unless user.save_facebook_data(auth_params)
+        user
       else
         auth_params[:password] = Devise.friendly_token[0,20]
         User.create(auth_params)
       end
+
     end
 
     def new_with_session(params, session)
