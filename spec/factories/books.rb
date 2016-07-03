@@ -6,5 +6,16 @@ FactoryGirl.define do
     author
     category
     price {50+rand(1000)}
+
+    factory :ordered_book do
+      transient do
+        count 1
+      end
+
+      after(:create) do |book, evaluator|
+        create(:orders_item, book: book, count: evaluator.count)
+      end
+    end
+
   end
 end

@@ -71,12 +71,16 @@ class Order < ApplicationRecord
     delivery.nil? ? subtotal : subtotal+delivery.cost
   end
 
-  def << (other)
+  def union_with(other)
     other.orders_items.each do |item|
-      item.update_attribute(:order, self) unless orders_items.find_by_book_id(item.book_id)
+      item.update_attribute(:order, self) unless contains(item.book)
     end
     other.reload.destroy
     self
+  end
+
+  def contains(book)
+    !!orders_items.find_by_book_id(book.id)
   end
 
 end

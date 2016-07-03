@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Delivery, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'fields' do
+    it {is_expected.to validate_presence_of :name}
+    it {is_expected.to validate_uniqueness_of :name}
+    it {is_expected.to validate_presence_of :cost}
+  end
 end

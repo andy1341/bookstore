@@ -272,7 +272,7 @@ Devise.setup do |config|
     if user.order_in_progress.nil?
       session_order.update_attribute(:user, user)
     else
-      user.order_in_progress << session_order
+      user.order_in_progress.union_with session_order
       auth.raw_session[:order_id] = user.order_in_progress.id
     end
   end

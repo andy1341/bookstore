@@ -6,13 +6,14 @@ class OrdersItem < ApplicationRecord
   validate :validate_cost, on: create
   validates :book, presence: true
   validates :order, presence: true
-  validates :order_id, uniqueness: {scope: :book_id, message: 'Book already at the cart'}
+  validates :book, uniqueness: {scope: :order_id}
 
   before_create :set_cost
   after_save :order_update
 
   def total
-    cost*count
+    return 0 if cost.nil?
+    count*cost
   end
 
   def order_update
