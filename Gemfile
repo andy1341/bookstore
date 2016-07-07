@@ -56,6 +56,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'rails-controller-testing', git: 'https://github.com/rails/rails-controller-testing'
+  gem 'spring-commands-rspec', git:'https://github.com/jonleighton/spring-commands-rspec'
   gem 'poltergeist'
   gem 'selenium-webdriver'
   gem 'ffaker'

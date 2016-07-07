@@ -11,7 +11,7 @@ class BooksController < ApplicationController
   end
 
   def set_breadcrumbs
-    add_breadcrumb 'Home', '/'
+    add_breadcrumb 'Home', root_path
     add_breadcrumb @book.category.name, category_path(@book.category)
   end
 end

@@ -1,6 +1,6 @@
 %h1= t '.title'
 
--if @orders_items.empty?
+-if @order.orders_items.empty?
   .container.cart-content.text-center
     %h2= t '.empty'
 -else

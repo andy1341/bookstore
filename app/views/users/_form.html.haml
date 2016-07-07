@@ -37,11 +37,11 @@
             = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
 
     .actions
+    .col-md-6.col-md-push-3
       -unless resource.is_facebook_account
-        .col-md-6.col-md-push-3
-          = f.label(:current_password)
-          %i= t '.hint.current_pass'
-          .input-group
-            = f.password_field :current_password, autocomplete: "off", class: 'form-control'
-          .input-group-btn
-            = f.submit t('.btn_text'), class:'btn btn-primary'
+        = f.label(:current_password)
+        %i= t '.hint.current_pass'
+        .input-group
+          = f.password_field :current_password, autocomplete: "off", class: 'form-control'
+      .input-group-btn
+        = f.submit t('.btn_text'), class:'btn btn-primary'

@@ -17,16 +17,4 @@ class User < ApplicationRecord
   def order_in_progress
     orders.in_progress.last if orders.in_progress
   end
-
-  def billing_address
-    super || Address.new
-  end
-
-  def shipping_address
-    super || Address.new
-  end
-
-  def credit_card
-    super || CreditCard.new
-  end
 end

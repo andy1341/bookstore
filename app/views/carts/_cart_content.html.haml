@@ -8,7 +8,7 @@
       %th= t '.total'
       %th
   %tbody
-    -@orders_items.each do |item|
+    -@order.orders_items.each do |item|
       =render 'carts/cart_row', item:item
     %tr
       %td{colspan:4}
