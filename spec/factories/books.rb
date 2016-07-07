@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :book do
-    title {FFaker::Movie.title}
+    sequence(:title) {|n| "#{FFaker::Movie.title}#{n}"}
     short_description {FFaker::Lorem.paragraph}
     description {FFaker::Lorem.paragraphs}
     author
