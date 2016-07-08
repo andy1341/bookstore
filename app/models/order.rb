@@ -7,6 +7,9 @@ class Order < ApplicationRecord
   has_many :orders_items, -> { order(created_at: :desc) }, dependent: :destroy
 
   attr_accessor :active_admin_requested_event
+  accepts_nested_attributes_for :billing_address
+  accepts_nested_attributes_for :shipping_address
+  accepts_nested_attributes_for :credit_card
 
   delegate :empty?, to: :orders_items
   delegate :billing_address, to: :user, prefix:true
@@ -14,13 +17,6 @@ class Order < ApplicationRecord
   delegate :credit_card, to: :user, prefix:true
 
   before_save :set_total
-  after_initialize do
-    if user.present?
-      self.billing_address ||= user_billing_address.dup
-      self.shipping_address ||= user_shipping_address.dup
-      self.credit_card ||= user_credit_card
-    end
-  end
 
   enum status: [:in_progress, :awaiting_shipment, :shipped, :completed, :cancelled]
 

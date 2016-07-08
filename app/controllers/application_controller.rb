@@ -38,6 +38,9 @@ class ApplicationController < ActionController::Base
 
   def set_user
     @user ||= User.new
+    @user.build_billing_address unless @user.billing_address
+    @user.build_shipping_address unless @user.shipping_address
+    @user.build_credit_card unless @user.credit_card
   end
 
   def empty_address?(type)
