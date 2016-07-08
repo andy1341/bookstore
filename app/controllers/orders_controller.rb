@@ -18,9 +18,8 @@ class OrdersController < ApplicationController
   end
 
   def show
-    order = current_user.orders.find_by_id(params[:id])
-    return order if order.present
-    redirect_to(user_path)
+    @order = current_user.orders.find_by_id(params[:id])
+    redirect_to(user_path) if @order.nil?
   end
 
   private
