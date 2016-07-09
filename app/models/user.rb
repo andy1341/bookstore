@@ -15,6 +15,7 @@ class User < ApplicationRecord
   include Facebookable
 
   def order_in_progress
-    orders.in_progress.last if orders.in_progress
+    return orders.in_progress.last unless orders.in_progress.empty?
+    orders.new
   end
 end

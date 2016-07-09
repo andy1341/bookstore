@@ -10,7 +10,7 @@ class OrdersItemsController < ApplicationController
 
   def update
     @order_item = @order.orders_items.find(params[:id])
-    @order_item.update_attributes(order_item_params)
+    @order_item.update(order_item_params)
     @orders_items = @order.orders_items
   end
 

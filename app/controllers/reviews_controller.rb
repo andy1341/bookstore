@@ -1,17 +1,13 @@
 class ReviewsController < ApplicationController
-  before_action :set_review
+  before_action :authenticate_user!
 
   def create
-    @review.update(review_params)
+    @review = Review.create(review_params)
   end
 
   private
 
   def review_params
     params.require(:review).permit(:user_id,:text,:reviewable_type, :reviewable_id, :rating)
-  end
-
-  def set_review
-    @review = Review.find_by_id(params[:id]) || Review.new
   end
 end

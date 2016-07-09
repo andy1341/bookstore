@@ -269,10 +269,10 @@ Devise.setup do |config|
 
     session_order = Order.find_by_id(auth.raw_session[:order_id])
 
-    if user.order_in_progress.nil?
+    if user.order_in_progress.nil? && session_order.present?
       session_order.update_attribute(:user, user)
     else
-      user.order_in_progress.union_with session_order
+      user.order_in_progress.union_with session_order if session_order.present?
       auth.raw_session[:order_id] = user.order_in_progress.id
     end
   end

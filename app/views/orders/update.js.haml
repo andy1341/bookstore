@@ -3,6 +3,6 @@
 -else
   $('.checkout .nav-tabs li').filter('.active').next('li').removeClass('disabled').find('a[data-toggle="tab"]').tab('show');
   $('.order-summary').html('#{escape_javascript(render 'carts/checkout_summary', order:@order)}');
-  -if @next_step == "confirm"
+  -if @next_step == :confirm
     $('.tab-content #confirm').html('#{escape_javascript(render 'carts/checkout_confirm', complited:false)}')
     $('.tab-link').click(function(e) {$('[href="#'+$(this).attr('id')+'"]').tab('show')})

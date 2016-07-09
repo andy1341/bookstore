@@ -1,8 +1,11 @@
 class OrdersController < ApplicationController
   before_action :set_order, except: [:show]
-
+  before_action :authenticate_user!
+  before_action do
+    redirect_to(user_path) unless request.format.js?
+  end
   def update
-    @next_step = params[:order][:next_step]
+    @next_step = params[:order][:next_step].to_sym
     params[:order][:use_billing_address] ||= @order.use_billing_address
     params[:order][:use_billing_address] = ["1",true].include? params[:order][:use_billing_address]
     params[:order][:shipping_address_attributes] = nil if params[:order][:use_billing_address]
@@ -10,11 +13,8 @@ class OrdersController < ApplicationController
   end
 
   def make_order
-    if @order.make_order && @order.save
-      new_session_order
-    else
-      @order.errors.add(:base, "Can't make order")
-    end
+    return new_session_order if @order.make_order && @order.save
+    @order.errors.add(:base, "Can't make order")
   end
 
   def show
