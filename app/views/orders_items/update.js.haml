@@ -1,2 +1,3 @@
 $(".cart-link").html("#{escape_javascript(render 'layouts/cart_text')}");
-$(".cart-content").html("#{escape_javascript(render 'carts/cart_content')}");
+$("#orders_item_#{@order_item.id} .total").html("#{@order_item.total}");
+$(".cart-content .cart-total").html("#{@order.subtotal}");

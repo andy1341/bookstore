@@ -1,8 +1,3 @@
 %h1= t '.title'
 
--if @order.orders_items.empty?
-  .container.cart-content.text-center
-    %h2= t '.empty'
--else
-  .container.cart-content
-    =render 'carts/cart_content'
+=render 'carts/cart_content'

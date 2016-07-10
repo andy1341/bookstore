@@ -2,8 +2,8 @@ en:
   carts:
     show:
       title: 'Cart'
-      empty: 'There is no books in your cart'
     cart_content:
+      empty: 'There is no books in your cart'
       book: 'Book'
       price: 'Price'
       quantity: 'Quantity'

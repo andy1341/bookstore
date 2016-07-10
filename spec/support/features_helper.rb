@@ -16,4 +16,10 @@ module FeaturesHelper
       find('[type=submit]').click
     end
   end
+
+  def visit_cart_with(book)
+    add_book_to_cart(book)
+    sleep 0.1
+    visit cart_path
+  end
 end

@@ -1,5 +1,5 @@
-=form_for item, remote: true do |f|
-  %tr.order-item
+%tr[item]
+  =form_for item, remote: true do |f|
     %td
       =link_to item.book do
         =image_tag item.book.image, height: '100px'
@@ -8,10 +8,10 @@
         =item.book.title
     %td
       $#{item.cost}
-    %td
+    %td.count
       =f.number_field :count, value: item.count.to_i, class: 'form-control count', min:1, max: 20
       =f.hidden_field :book_id, value: item.book.id
-    %td
+    %td.total
       $#{item.total}
     %td
       =f.button tag('span',class:'glyphicon glyphicon-refresh'), class: 'btn btn-primary'
