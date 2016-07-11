@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resource  :cart, only: [:show]
   get 'checkout' => 'carts#checkout', as: 'checkout'
 
-  resources :orders, only: [:update,:show]
   patch 'orders/make_order' => 'orders#make_order', as: 'make_order'
+  resources :orders, only: [:update,:show]
 
 end

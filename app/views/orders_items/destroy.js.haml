@@ -1,2 +1,5 @@
 $(".cart-link").html("#{escape_javascript(render 'layouts/cart_text')}");
-$(".cart-content").html("#{escape_javascript(render 'carts/cart_content')}");
+-if @orders_items.empty?
+  $(".cart-content").html("#{escape_javascript(render 'carts/cart_content')}");
+-else
+  $("#orders_item_#{@order_item.id}").remove()

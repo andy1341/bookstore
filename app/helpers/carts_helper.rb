@@ -5,7 +5,7 @@ module CartsHelper
 
   def tab_header(name, title, enable = true, active = false)
     result = <<HTML
-<li role="presentation" class="#{active ? 'active ' : ''}#{enable ? '' : 'disabled'}">
+<li role="presentation" class="#{active ? 'active' : ''}#{enable ? '' : 'disabled'}">
   #{tab_href(title,name)}
 </li>
 HTML

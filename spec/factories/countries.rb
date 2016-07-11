@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :country do
-    title {FFaker::Address.country}
+    sequence(:title) {|n| "#{FFaker::Address.country} #{n.to_s}"}
   end
 end

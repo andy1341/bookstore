@@ -19,7 +19,7 @@ module FeaturesHelper
 
   def visit_cart_with(book)
     add_book_to_cart(book)
-    sleep 0.1
+    sleep 1
     visit cart_path
   end
 end

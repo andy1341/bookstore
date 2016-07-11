@@ -32,8 +32,9 @@ feature 'Cart' do
     scenario 'delete item', js: true do
       visit_cart_with(book)
       find(".orders_item").find("[data-method=delete]").click
-      page.driver.browser.switch_to.alert.accept
-      expect(page).to have_content I18n.t('carts.cart_content.empty')
+      accept_confirm do
+        expect(page).to have_content I18n.t('carts.cart_content.empty')
+      end
     end
 
     scenario 'update item count', js: true, fix: true do
@@ -41,8 +42,9 @@ feature 'Cart' do
       within ".orders_item" do
         fill_in "orders_item[count]", with:2
         # expect {find('[type=submit').click}.to change {find('.total').text}
-        value = find('[type=submit').click
-        sleep 0.1
+        value = find('.total').text
+        find('[type=submit]').click
+        sleep 1
         expect(value).not_to eq find('.total').text
       end
     end
