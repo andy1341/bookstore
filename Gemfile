@@ -38,6 +38,7 @@ gem 'autoprefixer-rails'
 gem 'activeadmin', github: 'activeadmin'
 gem 'activeadmin_addons'
 gem 'devise'
+gem 'cancan'
 
 gem 'aasm'
 gem 'kaminari'

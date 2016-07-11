@@ -32,6 +32,9 @@
               %li.cart-link
                 =render 'layouts/cart_text'
               -if user_signed_in?
+                -if can? :access, :admin_panel
+                  %li
+                    =link_to t('menu.admin'), admin_root_path
                 %li
                   =link_to t('menu.profile'), user_path
                 %li
