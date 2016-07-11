@@ -49,6 +49,23 @@ feature 'Cart' do
       end
     end
 
+    context 'coupon' do
+      before { visit_cart_with(book)}
+      let(:coupon) {create(:coupon)}
+
+      scenario 'add broken coupon' do
+        fill_in 'coupon[name]', with: 'sale'
+        click_on I18n.t('coupons.form.submit')
+        expect(page).to have_content I18n.t('coupons.apply.invalid_coupon')
+      end
+
+      scenario 'add valid coupon' do
+        fill_in 'coupon[name]', with: coupon.name
+        click_on I18n.t('coupons.form.submit')
+        expect(page).to have_content I18n.t('coupons.form.discount', discount: coupon.discount)
+      end
+    end
+
   end
 
 

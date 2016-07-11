@@ -4,12 +4,15 @@ class Order < ApplicationRecord
   belongs_to :shipping_address, class_name: 'Address'
   belongs_to :delivery
   belongs_to :credit_card
+  belongs_to :coupon
   has_many :orders_items, -> { order(created_at: :desc) }, dependent: :destroy
 
   attr_accessor :active_admin_requested_event
   accepts_nested_attributes_for :billing_address
   accepts_nested_attributes_for :shipping_address
   accepts_nested_attributes_for :credit_card
+
+  DEFAULT_DISCOUNT_COEFFICIENT = 1
 
   delegate :empty?, to: :orders_items
   delegate :billing_address, to: :user, prefix:true
@@ -66,8 +69,21 @@ class Order < ApplicationRecord
     self[:total] = total
   end
 
-  def subtotal
+  def amount
     orders_items.sum(&:total)
+  end
+
+  def subtotal
+    amount*discount
+  end
+
+  def apply_coupon(coupon)
+    update(coupon:coupon) if coupon.is_a? Coupon
+  end
+
+  def discount
+    return coupon.discount_coefficient if coupon.present?
+    DEFAULT_DISCOUNT_COEFFICIENT
   end
 
   def total

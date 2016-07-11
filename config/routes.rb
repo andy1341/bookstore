@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   patch 'orders/make_order' => 'orders#make_order', as: 'make_order'
   resources :orders, only: [:update,:show]
 
+  patch 'coupons/apply', as:'coupons'
 end

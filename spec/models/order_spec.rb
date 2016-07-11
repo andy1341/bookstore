@@ -7,6 +7,7 @@ RSpec.describe Order, type: :model do
     it {is_expected.to belong_to :shipping_address}
     it {is_expected.to belong_to :delivery}
     it {is_expected.to belong_to :credit_card}
+    it {is_expected.to belong_to :coupon}
     it {is_expected.to have_many(:orders_items).dependent(:destroy)}
     it {is_expected.to accept_nested_attributes_for :billing_address}
     it {is_expected.to accept_nested_attributes_for :shipping_address}
@@ -81,4 +82,17 @@ RSpec.describe Order, type: :model do
       expect(order.contains(book)).to eq true
     end
   end
+
+  describe '#discount' do
+    let(:coupon) {create(:coupon)}
+    it 'return default coefficent if coupon nil' do
+      expect(order.discount).to eq Order::DEFAULT_DISCOUNT_COEFFICIENT
+    end
+    it 'return coupon discont' do
+      allow(order).to receive(:coupon) {coupon}
+      expect(order.discount).to eq coupon.discount_coefficient
+    end
+  end
+
+
 end
