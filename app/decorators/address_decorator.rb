@@ -16,12 +16,11 @@ class AddressDecorator < Draper::Decorator
 
   def to_s
     h.content_tag :div do
-      h.content_tag(:div, full_name)+
-      h.content_tag(:div, object.street)+
-      h.content_tag(:div, object.city)+
-      h.content_tag(:div, object.country)+
-      h.content_tag(:div, "Phone: #{object.phone}")
+      h.content_tag(:div, full_name) +
+        h.content_tag(:div, object.street) +
+        h.content_tag(:div, object.city) +
+        h.content_tag(:div, object.country) +
+        h.content_tag(:div, "Phone: #{object.phone}")
     end
   end
-
 end

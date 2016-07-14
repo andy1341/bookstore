@@ -1,0 +1,19 @@
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/BracesAroundHashParameters:
+  EnforcedStyle: context_dependent
+
+Documentation:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - 'db/migrate/*'
+    - 'db/schema.rb'
+    - 'bin/*'
+    - 'config/environments/*'
+    - 'config/initializers/*'
+    - 'config/*.yml'
+    - 'config/puma.rb'
+    - 'config/application.rb'

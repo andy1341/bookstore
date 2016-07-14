@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 feature 'Checkout', checkout: true do
-  let(:book) {create(:book)}
-  let(:user) {create(:user)}
-  let(:credit_card_attributes) {attributes_for(:credit_card)}
-  let(:address_attributes) {attributes_for(:address)}
+  let(:book) { create(:book) }
+  let(:user) { create(:user) }
+  let(:credit_card_attributes) { attributes_for(:credit_card) }
+  let(:address_attributes) { attributes_for(:address) }
   before do
     sign_in(user)
     create_list(:country, 3)
@@ -18,7 +18,7 @@ feature 'Checkout', checkout: true do
     expect(page).to have_css('.shipping-address', visible: false)
   end
 
-  scenario 'fill all', js:true do
+  scenario 'fill all', js: true do
     fill_address_step
     fill_delivery_step
     fill_payment_step

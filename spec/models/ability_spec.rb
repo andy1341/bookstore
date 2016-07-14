@@ -6,6 +6,6 @@ RSpec.describe Ability do
   subject(:ability) { Ability.new(user) }
 
   context 'admin' do
-    it { is_expected.to be_able_to :access, :admin_panel}
+    it { is_expected.to be_able_to :access, :admin_panel }
   end
 end

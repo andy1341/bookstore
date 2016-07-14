@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook]
+         :omniauthable, omniauth_providers: [:facebook]
 
   belongs_to :billing_address, class_name: 'Address', dependent: :destroy
   belongs_to :shipping_address, class_name: 'Address', dependent: :destroy

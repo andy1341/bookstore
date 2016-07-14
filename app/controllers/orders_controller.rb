@@ -6,8 +6,8 @@ class OrdersController < ApplicationController
   end
   def update
     @next_step = params[:order][:next_step].to_sym
+    params[:order][:use_billing_address] = '1' == params[:order][:use_billing_address]
     params[:order][:use_billing_address] ||= @order.use_billing_address
-    params[:order][:use_billing_address] = ["1",true].include? params[:order][:use_billing_address]
     params[:order][:shipping_address_attributes] = nil if params[:order][:use_billing_address]
     @order.update(order_params)
   end
@@ -23,22 +23,24 @@ class OrdersController < ApplicationController
   end
 
   private
+
   def set_order
     @order = current_order
   end
+
   def order_params
     params.require(:order).permit(
-        :use_billing_address,
-        :delivery_id,
-        billing_address_attributes: Address.attribute_names,
-        shipping_address_attributes: Address.attribute_names,
-        credit_card_attributes: [
-            :number,
-            :code,
-            :expiration_month,
-            :expiration_year,
-            :id
-        ]
+      :use_billing_address,
+      :delivery_id,
+      billing_address_attributes: Address.attribute_names,
+      shipping_address_attributes: Address.attribute_names,
+      credit_card_attributes: [
+        :number,
+        :code,
+        :expiration_month,
+        :expiration_year,
+        :id
+      ]
     )
   end
 end

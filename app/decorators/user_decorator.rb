@@ -17,5 +17,4 @@ class UserDecorator < Draper::Decorator
   def to_s
     object.email
   end
-
 end

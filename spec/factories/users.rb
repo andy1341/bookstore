@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :user do
-    email {FFaker::Internet.email}
-    password {FFaker::Internet.password}
+    email { FFaker::Internet.email }
+    password { FFaker::Internet.password }
 
     factory :user_with_order do
       after(:create) do |user|

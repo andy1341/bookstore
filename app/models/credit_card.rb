@@ -9,7 +9,7 @@ class CreditCard < ApplicationRecord
   end
 
   def self.years
-    now = Time.now.strftime("%y").to_i
+    now = Time.now.strftime('%y').to_i
     to = 20.years.since.strftime('%y').to_i
     (now..to).to_a
   end

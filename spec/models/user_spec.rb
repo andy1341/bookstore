@@ -2,14 +2,22 @@ require 'rails_helper'
 require 'models/concerns/facebookable_spec'
 
 RSpec.describe User, type: :model do
-  subject {build(:user)}
+  subject { build(:user) }
   context 'fields' do
-    it {is_expected.to belong_to(:billing_address).class_name(Address).dependent(:destroy) }
-    it {is_expected.to belong_to(:shipping_address).class_name(Address).dependent(:destroy) }
-    it {is_expected.to belong_to(:credit_card).dependent(:destroy) }
-    it {is_expected.to accept_nested_attributes_for :billing_address}
-    it {is_expected.to accept_nested_attributes_for :shipping_address}
-    it {is_expected.to accept_nested_attributes_for :credit_card}
+    it do
+      is_expected.to belong_to(:billing_address)
+        .class_name(Address)
+        .dependent(:destroy)
+    end
+    it do
+      is_expected.to belong_to(:shipping_address)
+        .class_name(Address)
+        .dependent(:destroy)
+    end
+    it { is_expected.to belong_to(:credit_card).dependent(:destroy) }
+    it { is_expected.to accept_nested_attributes_for :billing_address }
+    it { is_expected.to accept_nested_attributes_for :shipping_address }
+    it { is_expected.to accept_nested_attributes_for :credit_card }
   end
 
   it_behaves_like 'facebookable'

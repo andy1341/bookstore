@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def new_session_order
-    order = Order.create(user:current_user)
+    order = Order.create(user: current_user)
     session[:order_id] = order.id
     order
   end
@@ -30,10 +30,10 @@ class ApplicationController < ActionController::Base
     end
 
     devise_parameter_sanitizer.permit(:account_update, keys: [
-        :id, billing_address_attributes: Address.attribute_names,
-        shipping_address_attributes: Address.attribute_names,
-        credit_card_attributes: [:number, :code, :expiration_month, :expiration_year]
-        ])
+                                        :id, billing_address_attributes: Address.attribute_names,
+                                             shipping_address_attributes: Address.attribute_names,
+                                             credit_card_attributes: [:number, :code, :expiration_month, :expiration_year]
+                                      ])
   end
 
   def set_user
@@ -44,8 +44,8 @@ class ApplicationController < ActionController::Base
   end
 
   def empty_address?(type)
-    params.require(:user).fetch(:"#{type}_address_attributes",{})
-        .permit([:firstname,:lastname,:street_address,:city,:zip,:phone]).values.all?(&:empty?)
+    params.require(:user).fetch(:"#{type}_address_attributes", {})
+          .permit([:firstname, :lastname, :street_address, :city, :zip, :phone]).values.all?(&:empty?)
   end
 
   def empty_card?

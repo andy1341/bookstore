@@ -15,9 +15,9 @@ class Order < ApplicationRecord
   DEFAULT_DISCOUNT_COEFFICIENT = 1
 
   delegate :empty?, to: :orders_items
-  delegate :billing_address, to: :user, prefix:true
-  delegate :shipping_address, to: :user, prefix:true
-  delegate :credit_card, to: :user, prefix:true
+  delegate :billing_address, to: :user, prefix: true
+  delegate :shipping_address, to: :user, prefix: true
+  delegate :credit_card, to: :user, prefix: true
 
   before_save :set_total
 
@@ -25,7 +25,7 @@ class Order < ApplicationRecord
 
   include AASM
 
-  aasm :column => :status, enum:true, :whiny_transitions => false do
+  aasm column: :status, enum: true, whiny_transitions: false do
     state :in_progress, initial: true
     state :awaiting_shipment
     state :shipped
@@ -47,11 +47,10 @@ class Order < ApplicationRecord
     event :cancel do
       transitions from: [:in_progress, :awaiting_shipment, :shipped], to: :cancelled
     end
-
   end
 
   def can_make_order?
-    errors.add(:base, "Order already done") unless in_progress?
+    errors.add(:base, 'Order already done') unless in_progress?
     errors.add(:user, :blank) if user.blank?
     errors.add(:billing_address, :blank) if billing_address.blank?
     errors.add(:shipping_address, :blank) if !use_billing_address && shipping_address.blank?
@@ -74,11 +73,11 @@ class Order < ApplicationRecord
   end
 
   def subtotal
-    amount*discount
+    amount * discount
   end
 
   def apply_coupon(coupon)
-    update(coupon:coupon) if coupon.is_a? Coupon
+    update(coupon: coupon) if coupon.is_a? Coupon
   end
 
   def discount
@@ -87,7 +86,7 @@ class Order < ApplicationRecord
   end
 
   def total
-    delivery.nil? ? subtotal : subtotal+delivery.cost
+    delivery.nil? ? subtotal : subtotal + delivery.cost
   end
 
   def union_with(other)
@@ -101,5 +100,4 @@ class Order < ApplicationRecord
   def contains(book)
     !!orders_items.find_by_book_id(book.id)
   end
-
 end

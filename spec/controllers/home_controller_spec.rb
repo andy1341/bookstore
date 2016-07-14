@@ -1,8 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe HomeController, type: :controller  do
+RSpec.describe HomeController, type: :controller do
   describe 'GET #index' do
-
     it 'renders :index template' do
       get :index
       expect(response).to render_template(:index)
@@ -12,6 +11,5 @@ RSpec.describe HomeController, type: :controller  do
       expect(Book).to receive(:popular_books)
       get :index
     end
-
   end
 end

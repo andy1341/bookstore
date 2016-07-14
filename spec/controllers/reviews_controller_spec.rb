@@ -4,7 +4,7 @@ RSpec.describe ReviewsController, type: :controller do
   describe 'POST create' do
     let(:action) do
       post :create, format: :js, params: {
-          review:attributes_for(:review)
+        review: attributes_for(:review)
       }
     end
 
@@ -23,11 +23,10 @@ RSpec.describe ReviewsController, type: :controller do
         expect(assigns(:review)).to be_a Review
       end
       it 'create review with :review_params' do
-        allow(controller).to receive(:review_params) {:review_params}
+        allow(controller).to receive(:review_params) { :review_params }
         expect(Review).to receive(:create).with(:review_params)
         action
       end
     end
-
   end
 end

@@ -3,6 +3,6 @@ class Coupon < ApplicationRecord
   validates :discount, inclusion: 1..100
 
   def discount_coefficient
-    (1 - discount/100.0)
+    (1 - discount / 100.0)
   end
 end

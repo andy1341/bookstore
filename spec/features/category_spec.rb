@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 feature 'Category' do
-  let(:category) {create(:category)}
+  let(:category) { create(:category) }
   before do
-    create_list(:book, 30, category:category)
+    create_list(:book, 30, category: category)
     visit category_path(category)
   end
 

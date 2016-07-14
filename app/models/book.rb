@@ -10,8 +10,8 @@ class Book < ApplicationRecord
 
   def self.popular_books
     joins(:orders_items)
-        .select('books.*, count(books.id) as count')
-        .group(:id)
-        .order('count DESC')
+      .select('books.*, count(books.id) as count')
+      .group(:id)
+      .order('count DESC')
   end
 end

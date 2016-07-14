@@ -22,10 +22,10 @@ module Facebookable
   module ClassMethods
     def from_omniauth(auth)
       auth_params = {
-          provider: auth.provider,
-          uid: auth.uid,
-          name:auth.info.name,
-          email:auth.info.email
+        provider: auth.provider,
+        uid: auth.uid,
+        name: auth.info.name,
+        email: auth.info.email
       }
 
       user = find_by_email(auth_params[:email])
@@ -34,17 +34,16 @@ module Facebookable
         return nil unless user.save_facebook_data(auth_params)
         user
       else
-        auth_params[:password] = Devise.friendly_token[0,20]
+        auth_params[:password] = Devise.friendly_token[0, 20]
         User.create(auth_params)
       end
-
     end
 
     def new_with_session(params, session)
       super.tap do |user|
-        data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
         if data
-          user.email = data["email"] if user.email.blank?
+          user.email = data['email'] if user.email.blank?
         end
       end
     end
