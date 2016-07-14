@@ -5,10 +5,8 @@ ActiveAdmin.register Order do
   after_save do |order|
     event = params[:order][:active_admin_requested_event]
     unless event.blank?
-      # whitelist to ensure we don't run an arbitrary method
       safe_event = (order.aasm.events(permitted: true).map(&:name) & [event.to_sym]).first
       raise "Forbidden event #{event} requested on instance #{order.id}" unless safe_event
-      # launch the event with bang
       order.send("#{safe_event}!")
     end
   end
@@ -40,11 +38,8 @@ ActiveAdmin.register Order do
 
   form do |f|
     f.inputs 'Order Details' do
-      # display current state as disabled to avoid modifying it directly
       f.input :status, input_html: { disabled: true }, label: 'Current state'
-
       unless f.object.in_progress? || f.object.cancelled?
-        # use the attr_accessor to pass the data
         f.input :active_admin_requested_event, label: 'Change state', as: :select, collection: f.object.aasm.events(permitted: true).map(&:name)
       end
     end
