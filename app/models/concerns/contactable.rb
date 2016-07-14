@@ -6,9 +6,9 @@ module Contactable
     belongs_to :shipping_address, class_name: 'Address', dependent: :destroy
     belongs_to :credit_card, dependent: :destroy
 
-    accepts_nested_attributes_for :billing_address
-    accepts_nested_attributes_for :shipping_address
-    accepts_nested_attributes_for :credit_card
+    accepts_nested_attributes_for :billing_address, reject_if: :address_blank?
+    accepts_nested_attributes_for :shipping_address, reject_if: :address_blank?
+    accepts_nested_attributes_for :credit_card, reject_if: :all_blank
   end
 
   def billing_address
@@ -24,6 +24,10 @@ module Contactable
   end
 
   private
+
+  def address_blank?(attributes)
+    attributes.except(:country_id).values.all?(&:empty?)
+  end
 
   def copy_field(field)
     try(:user).try(field).try(:dup).try(:save)
