@@ -1,18 +1,13 @@
 class Order < ApplicationRecord
   belongs_to :user
-  belongs_to :billing_address, class_name: 'Address'
-  belongs_to :shipping_address, class_name: 'Address'
   belongs_to :delivery
-  belongs_to :credit_card
   belongs_to :coupon
   has_many :orders_items, -> { order(created_at: :desc) }, dependent: :destroy
 
-  attr_accessor :active_admin_requested_event
-  accepts_nested_attributes_for :billing_address
-  accepts_nested_attributes_for :shipping_address
-  accepts_nested_attributes_for :credit_card
+  include Contactable
 
   DEFAULT_DISCOUNT_COEFFICIENT = 1
+  attr_accessor :active_admin_requested_event
 
   delegate :empty?, to: :orders_items
   delegate :billing_address, to: :user, prefix: true
@@ -52,10 +47,10 @@ class Order < ApplicationRecord
   def can_make_order?
     errors.add(:base, 'Order already done') unless in_progress?
     errors.add(:user, :blank) if user.blank?
-    errors.add(:billing_address, :blank) if billing_address.blank?
-    errors.add(:shipping_address, :blank) if !use_billing_address && shipping_address.blank?
+    errors.add(:billing_address, :blank) if billing_address_id.blank?
+    errors.add(:shipping_address, :blank) if !use_billing_address && shipping_address_id.blank?
     errors.add(:delivery, :blank) if delivery.blank?
-    errors.add(:credit_card, :blank) if credit_card.blank?
+    errors.add(:credit_card, :blank) if credit_card_id.blank?
     errors.add(:orders_items, :blank) if orders_items.blank?
     errors.empty?
   end

@@ -32,7 +32,7 @@ RSpec.describe Order, type: :model do
      :delivery,
      :credit_card].each do |field|
       it "return false if #{field} blank" do
-        order.send("#{field}=", nil)
+        order.update("#{field}":nil)
       end
     end
 
