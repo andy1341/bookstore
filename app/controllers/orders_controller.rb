@@ -1,9 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, except: [:show]
-  before_action :authenticate_user!
-  before_action do
-    redirect_to(user_path) unless request.format.js?
-  end
+  load_and_authorize_resource
+
   def update
     @next_step = params[:order][:next_step].to_sym
     params[:order][:use_billing_address] = '1' == params[:order][:use_billing_address]
@@ -18,8 +16,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = current_user.orders.find_by_id(params[:id])
-    redirect_to(user_path) if @order.nil?
+    @order = Order.find_by_id(params[:id])
   end
 
   private

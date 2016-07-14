@@ -22,7 +22,8 @@ gem 'kaminari'
 gem 'omniauth-facebook'
 gem 'breadcrumbs_on_rails'
 gem 'jquery-star-rating-rails'
-gem 'draper', git: 'https://github.com/drapergem/draper', branch: 'rails-5'
+gem 'drape'
+gem 'reform-rails'
 
 group :development, :test do
   gem 'pry'

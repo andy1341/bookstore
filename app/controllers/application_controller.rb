@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_device, if: :devise_controller? || :registrations_controller?
   before_action :set_breadcrumbs
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :notice => exception.message
+  end
+
   def current_order
     order = current_user.order_in_progress if current_user
     order ||= Order.find_by_id(session[:order_id])
