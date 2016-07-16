@@ -35,3 +35,5 @@ end
 Delivery.create(name: 'Singapore Post', cost: 5)
 Delivery.create(name: 'EMS', cost: 10)
 Delivery.create(name: 'China Post Registered Air Mail', cost: 15)
+
+Book.update_all(image:'index.jpg')
