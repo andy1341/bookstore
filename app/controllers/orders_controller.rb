@@ -7,7 +7,6 @@ class OrdersController < ApplicationController
     params[:order][:use_billing_address] = '1' == params[:order][:use_billing_address]
     params[:order][:use_billing_address] ||= @order.use_billing_address
     params[:order][:shipping_address_attributes] = nil if params[:order][:use_billing_address]
-    # pry.binding
     @order.update(order_params)
   end
 
