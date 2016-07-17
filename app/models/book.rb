@@ -8,17 +8,15 @@ class Book < ApplicationRecord
   validates :title, uniqueness: true
   validates :title, :price, :category, :author, presence: true
 
-  def self.popular_books
-    ordered_books || Book.limit(POPULAR_COUNT)
+  scope :ordered_books, -> do
+    joins(:orders_items)
+      .select('books.*')
+      .group('books.id')
+      .limit(POPULAR_COUNT)
   end
 
-  private
-
-  def self.ordered_books
-    joins(:orders_items)
-      .select('books.*, count(books.id) as count')
-      .group(:id)
-      .limit(POPULAR_COUNT)
-      .order('count DESC')
+  def self.popular_books
+    return Book.limit(POPULAR_COUNT) if ordered_books.empty?
+    ordered_books
   end
 end
