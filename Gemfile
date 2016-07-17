@@ -24,6 +24,7 @@ gem 'breadcrumbs_on_rails'
 gem 'jquery-star-rating-rails'
 gem 'drape'
 gem 'reform-rails'
+gem 'listen', '~> 3.0.5'
 
 group :development, :test do
   gem 'pry'
@@ -45,7 +46,6 @@ end
 
 group :development do
   gem 'web-console'
-  gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'capistrano',         require: false

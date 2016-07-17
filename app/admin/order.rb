@@ -1,6 +1,5 @@
 ActiveAdmin.register Order do
   permit_params :order, :status
-  decorate_with OrderDecorator
 
   after_save do |order|
     event = params[:order][:active_admin_requested_event]
@@ -14,7 +13,7 @@ ActiveAdmin.register Order do
   index do
     selectable_column
     id_column
-    column :user, &:user
+    column :user do |order| order.user.try(:email) end
     state_column :status
     column :completed_date
     column :delivery
