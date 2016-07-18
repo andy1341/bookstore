@@ -7,7 +7,6 @@
     = javascript_include_tag 'application'
     = favicon_link_tag 'favicon.ico'
   %body
-    =notice
     .container
       %nav.navbar.navbar-default.navbar-fixed-top
         .container
@@ -32,6 +31,9 @@
               %li.cart-link
                 =render 'layouts/cart_text'
               -if user_signed_in?
+                -if can? :access, :admin_panel
+                  %li
+                    =link_to t('menu.admin'), admin_root_path
                 %li
                   =link_to t('menu.profile'), user_path
                 %li
@@ -42,6 +44,7 @@
                 %li
                   =link_to t('menu.signup'), new_user_registration_path
     .container
+      =render('shared/alert', message: notice) if notice.present?
       -unless breadcrumbs.empty?
         %ol.breadcrumb
           =render_breadcrumbs :tag => :li, :separator => ""

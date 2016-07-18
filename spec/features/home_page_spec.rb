@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 feature 'Home page' do
-
   before do
-    @books = [create(:ordered_book),create(:ordered_book)]
+    @books = [create(:ordered_book), create(:ordered_book)]
     visit root_path
   end
 
@@ -16,14 +15,13 @@ feature 'Home page' do
     expect(page).to have_content @books[0].title
   end
 
-  scenario 'can switch popular book', js:true  do
+  scenario 'can switch popular book', js: true do
     find('[data-slide=next]').click
-    expect(page).to have_content @books[1].title
+    expect(page).not_to have_content @books[0].title
   end
 
-  scenario 'can add book to the cart', js:true  do
+  scenario 'can add book to the cart', js: true do
     click_add_to_cart
-    expect(page).to have_css '.cart-link', text:'Cart(1)'
+    expect(page).to have_css '.cart-link', text: 'Cart(1)'
   end
-
 end

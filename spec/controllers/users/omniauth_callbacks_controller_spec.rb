@@ -1,14 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Users::OmniauthCallbacksController, type: :controller do
-  let(:user) {create(:user)}
+  let(:user) { create(:user) }
   before { configure_omniauth }
 
   describe 'get #facebook' do
-
     context 'user present' do
       before do
-        allow(User).to receive(:from_omniauth) {user}
+        allow(User).to receive(:from_omniauth) { user }
         get :facebook
       end
 
@@ -23,7 +22,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
 
     context 'user not present' do
       before do
-        allow(User).to receive(:from_omniauth) {nil}
+        allow(User).to receive(:from_omniauth) { nil }
         get :facebook
       end
       it 'save data to session' do
@@ -33,6 +32,5 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
         expect(response).to redirect_to new_user_registration_path
       end
     end
-
   end
 end

@@ -1,8 +1,7 @@
 module CheckoutFeaturesHelper
-
   def fill_address_step
     within '.tab-pane.active .billing-address' do
-      address_attributes.each do |attribute,value|
+      address_attributes.each do |attribute, value|
         fill_in attribute.to_s.humanize, with: value
       end
     end
@@ -26,10 +25,12 @@ module CheckoutFeaturesHelper
   end
 
   def fill_confirm_step
-    expect(page).to have_content I18n.t('carts.checkout_confirm.ship_to_billing')
-    expect(page).to have_content address_attributes[:firstname]
-    expect(page).to have_content address_attributes[:phone]
-    expect(page).to have_content Delivery.first.name
+    [I18n.t('carts.checkout_confirm.ship_to_billing'),
+     address_attributes[:firstname],
+     address_attributes[:phone],
+     Delivery.first.name].each do |expectation|
+      expect(page).to have_content expectation
+    end
     click_on I18n.t('carts.checkout_confirm.btn_text.comfirm')
     expect_tab(:complete)
   end
@@ -45,6 +46,7 @@ module CheckoutFeaturesHelper
 
   def expect_tab(tab)
     sleep 1
-    expect(find('.nav-tabs .active')).to have_content I18n.t("carts.checkout.tab-#{tab}")
+    expect(find('.nav-tabs .active'))
+      .to have_content I18n.t("carts.checkout.tab-#{tab}")
   end
 end

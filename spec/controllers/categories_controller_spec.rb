@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
   describe 'GET #show' do
-    let(:book) {create(:book)}
-    let(:category) {book.category}
+    let(:book) { create(:book) }
+    let(:category) { book.category }
 
     before do
-      get :show, params: {id:category.id}
+      get :show, params: { id: category.id }
     end
 
     it 'assigns category' do

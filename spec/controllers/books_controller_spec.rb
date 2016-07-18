@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe BooksController, type: :controller do
   describe 'GET #show' do
-
-    let(:book) {create(:book)}
+    let(:book) { create(:book) }
 
     before do
       allow(controller).to receive(:current_order).and_return(Order.new)
@@ -23,6 +22,5 @@ RSpec.describe BooksController, type: :controller do
       expect(controller).to receive(:add_breadcrumb).twice
       get :show, params: { id: book.id }
     end
-
   end
 end

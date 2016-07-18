@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks",  registrations: 'users/registrations' }
+  devise_for :users, controllers:
+      { omniauth_callbacks: 'users/omniauth_callbacks',
+        registrations: 'users/registrations' }
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root 'home#index'
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   get 'checkout' => 'carts#checkout', as: 'checkout'
 
   patch 'orders/make_order' => 'orders#make_order', as: 'make_order'
-  resources :orders, only: [:update,:show]
+  resources :orders, only: [:update, :show]
 
+  patch 'coupons/apply', as: 'coupons'
 end

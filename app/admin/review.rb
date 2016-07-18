@@ -17,7 +17,7 @@ ActiveAdmin.register Review do
   end
 
   form do |f|
-    f.inputs "Review" do
+    f.inputs 'Review' do
       f.input :status
     end
     f.actions

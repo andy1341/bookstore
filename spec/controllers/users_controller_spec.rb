@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   describe 'GET #show' do
-
     context 'not logged in' do
       before(:each) { get :show }
       it 'redirect to login page' do
@@ -21,8 +20,6 @@ RSpec.describe UsersController, type: :controller do
       it 'render :show' do
         expect(response).to render_template :show
       end
-
     end
-
   end
 end

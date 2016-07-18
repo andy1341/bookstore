@@ -23,14 +23,14 @@ ActiveAdmin.register Book do
   filter :price
 
   form do |f|
-    f.inputs "Book Details" do
+    f.inputs 'Book Details' do
       f.input :title
       f.input :short_description
       f.input :description
       f.input :author
       f.input :category
       f.input :price
-      f.input :image, hint:image_tag(f.object.image, width: '200px')
+      f.input :image, hint: image_tag(f.object.image, width: '200px')
     end
     f.actions
   end

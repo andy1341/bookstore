@@ -3,15 +3,20 @@ class Book < ApplicationRecord
   belongs_to :category
   has_many :reviews, as: :reviewable
   has_many :orders_items
-
+  POPULAR_COUNT = 10
   mount_uploader :image, ImageUploader
   validates :title, uniqueness: true
   validates :title, :price, :category, :author, presence: true
 
-  def self.popular_books
+  scope :ordered_books, -> do
     joins(:orders_items)
-        .select('books.*, count(books.id) as count')
-        .group(:id)
-        .order('count DESC')
+      .select('books.*')
+      .group('books.id')
+      .limit(POPULAR_COUNT)
+  end
+
+  def self.popular_books
+    return Book.limit(POPULAR_COUNT) if ordered_books.empty?
+    ordered_books
   end
 end

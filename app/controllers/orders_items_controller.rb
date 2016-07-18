@@ -7,7 +7,7 @@ class OrdersItemsController < ApplicationController
     @order.save
     @book = Book.find(order_item_params[:book_id])
     respond_to do |f|
-      f.html {redirect_to cart_path}
+      f.html { redirect_to cart_path }
       f.js
     end
   end
@@ -17,7 +17,7 @@ class OrdersItemsController < ApplicationController
     @order_item.update(order_item_params)
     @orders_items = @order.orders_items
     respond_to do |f|
-      f.html {redirect_to cart_path}
+      f.html { redirect_to cart_path }
       f.js
     end
   end
@@ -27,12 +27,13 @@ class OrdersItemsController < ApplicationController
     @order_item.destroy
     @orders_items = @order.orders_items
     respond_to do |f|
-      f.html {redirect_to cart_path}
+      f.html { redirect_to cart_path }
       f.js
     end
   end
 
   private
+
   def order_item_params
     params.require(:orders_item).permit(:count, :book_id)
   end
@@ -44,5 +45,4 @@ class OrdersItemsController < ApplicationController
   def set_order
     @order = current_order
   end
-
 end

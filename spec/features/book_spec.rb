@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 feature 'Book' do
-  let(:book) {create(:book)}
-  let(:ordered_book) {create(:ordered_book)}
+  let(:book) { create(:book) }
+  let(:ordered_book) { create(:ordered_book) }
   before do
     visit book_path(book)
   end
@@ -18,11 +18,11 @@ feature 'Book' do
   context "book does't at the cart" do
     scenario 'can add book to the cart', js: true do
       click_add_to_cart
-      expect(page).to have_css '.cart-link', text:'Cart(1)'
+      expect(page).to have_css '.cart-link', text: 'Cart(1)'
     end
   end
   context 'book at the cart' do
-    scenario 'can go to the cart',js:true do
+    scenario 'can go to the cart', js: true do
       click_add_to_cart
       expect(page).to have_css('.cart-btn-container a.to-cart')
     end
@@ -33,7 +33,7 @@ feature 'Book' do
         expect(page).to have_content I18n.t('books.reviews.empty')
       end
     end
-    let(:review) {create(:review, reviewable: book, status: :proved)}
+    let(:review) { create(:review, reviewable: book, status: :proved) }
     context 'book has reviews' do
       scenario 'can see reviews' do
         create(:review, reviewable: book, status: :proved)
@@ -43,7 +43,7 @@ feature 'Book' do
     end
   end
   context 'registred user' do
-    let(:user) {create(:user)}
+    let(:user) { create(:user) }
     scenario 'add review', js: true do
       sign_in(user)
       visit book_path(book)

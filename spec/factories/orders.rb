@@ -6,8 +6,8 @@ FactoryGirl.define do
     delivery
     credit_card
 
-    after(:create) do |order,evaluator|
-      order.orders_items << FactoryGirl.create(:orders_item, order:order)
+    after(:create) do |order, _evaluator|
+      order.orders_items << FactoryGirl.create(:orders_item, order: order)
     end
   end
 end

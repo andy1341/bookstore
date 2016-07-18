@@ -1,31 +1,28 @@
 require 'rails_helper'
 
-RSpec.describe OrdersController, type: :controller  do
-  let(:order) {create(:order)}
+RSpec.describe OrdersController, type: :controller do
+  let(:user) { create(:user) }
+  let(:order) { create(:order, user: user) }
   before { allow(controller).to receive(:current_order).and_return(order) }
+  before { allow(controller).to receive(:current_user).and_return(user) }
   login_user
 
   describe 'GET #show' do
-    subject { get :show, params:{id:order.id}, format: :js }
+    subject { get :show, params: { id: order.id } }
 
     it 'assign order' do
-      allow(controller)
-          .to receive_message_chain(:current_user,:orders,:find_by_id)
-                  .and_return(order)
       subject
-      expect(assigns(:order)).to eq order
+      expect(assigns(:order)).to be_a Order
     end
 
-    it 'redirect to user' do
-      allow(controller)
-          .to receive_message_chain(:current_user,:orders,:find_by_id)
-                  .and_return(nil)
-      is_expected.to redirect_to(user_path)
+    context 'foreign order'
+    it 'redirect to home' do
+      order.update(user:create(:user))
+      is_expected.to redirect_to(root_path)
     end
   end
 
   describe 'PATCH make_order' do
-
     after { patch :make_order, format: :js }
 
     it 'create new session order when order ready' do
@@ -44,11 +41,11 @@ RSpec.describe OrdersController, type: :controller  do
   describe 'PUT update' do
     def js_request
       put :update, format: :js, params: {
-          id:order.id,
-          order:{
-              next_step: :delivery,
-              delivery_id: 2
-          }
+        id: order.id,
+        order: {
+          next_step: :delivery,
+          delivery_id: 2
+        }
       }
     end
 

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CartsController, type: :controller do
-  let(:order) {create(:order)}
+  let(:order) { create(:order) }
 
   before do
     allow(controller).to receive(:current_order).and_return(order)
@@ -20,10 +20,10 @@ RSpec.describe CartsController, type: :controller do
   end
 
   describe 'GET #checkout' do
-    subject {get :checkout}
+    subject { get :checkout }
 
     context 'not signed in' do
-      it "redirect to new_user_session_path" do
+      it 'redirect to new_user_session_path' do
         is_expected.to redirect_to(new_user_session_path)
       end
     end

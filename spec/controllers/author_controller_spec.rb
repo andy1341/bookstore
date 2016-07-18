@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe AuthorsController, type: :controller do
   describe 'GET #show' do
-
-    let(:author) {create(:author)}
+    let(:author) { create(:author) }
 
     before do
       get :show, params: { id: author.id }
@@ -16,6 +15,5 @@ RSpec.describe AuthorsController, type: :controller do
     it 'assigns @author' do
       expect(assigns(:author)).to eq author
     end
-
   end
 end

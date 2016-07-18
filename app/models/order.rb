@@ -1,20 +1,18 @@
 class Order < ApplicationRecord
   belongs_to :user
-  belongs_to :billing_address, class_name: 'Address'
-  belongs_to :shipping_address, class_name: 'Address'
   belongs_to :delivery
-  belongs_to :credit_card
+  belongs_to :coupon
   has_many :orders_items, -> { order(created_at: :desc) }, dependent: :destroy
 
+  include Contactable
+
+  DEFAULT_DISCOUNT_COEFFICIENT = 1
   attr_accessor :active_admin_requested_event
-  accepts_nested_attributes_for :billing_address
-  accepts_nested_attributes_for :shipping_address
-  accepts_nested_attributes_for :credit_card
 
   delegate :empty?, to: :orders_items
-  delegate :billing_address, to: :user, prefix:true
-  delegate :shipping_address, to: :user, prefix:true
-  delegate :credit_card, to: :user, prefix:true
+  delegate :billing_address, to: :user, prefix: true
+  delegate :shipping_address, to: :user, prefix: true
+  delegate :credit_card, to: :user, prefix: true
 
   before_save :set_total
 
@@ -22,7 +20,7 @@ class Order < ApplicationRecord
 
   include AASM
 
-  aasm :column => :status, enum:true, :whiny_transitions => false do
+  aasm column: :status, enum: true, whiny_transitions: false do
     state :in_progress, initial: true
     state :awaiting_shipment
     state :shipped
@@ -44,16 +42,15 @@ class Order < ApplicationRecord
     event :cancel do
       transitions from: [:in_progress, :awaiting_shipment, :shipped], to: :cancelled
     end
-
   end
 
   def can_make_order?
-    errors.add(:base, "Order already done") unless in_progress?
+    errors.add(:base, 'Order already done') unless in_progress?
     errors.add(:user, :blank) if user.blank?
-    errors.add(:billing_address, :blank) if billing_address.blank?
-    errors.add(:shipping_address, :blank) if !use_billing_address && shipping_address.blank?
+    errors.add(:billing_address, :blank) if billing_address_id.blank?
+    errors.add(:shipping_address, :blank) if !use_billing_address && shipping_address_id.blank?
     errors.add(:delivery, :blank) if delivery.blank?
-    errors.add(:credit_card, :blank) if credit_card.blank?
+    errors.add(:credit_card, :blank) if credit_card_id.blank?
     errors.add(:orders_items, :blank) if orders_items.blank?
     errors.empty?
   end
@@ -66,12 +63,25 @@ class Order < ApplicationRecord
     self[:total] = total
   end
 
-  def subtotal
+  def amount
     orders_items.sum(&:total)
   end
 
+  def subtotal
+    amount * discount
+  end
+
+  def apply_coupon(coupon)
+    update(coupon: coupon) if coupon.is_a? Coupon
+  end
+
+  def discount
+    return coupon.discount_coefficient if coupon.present?
+    DEFAULT_DISCOUNT_COEFFICIENT
+  end
+
   def total
-    delivery.nil? ? subtotal : subtotal+delivery.cost
+    delivery.nil? ? subtotal : subtotal + delivery.cost
   end
 
   def union_with(other)
@@ -85,5 +95,4 @@ class Order < ApplicationRecord
   def contains(book)
     !!orders_items.find_by_book_id(book.id)
   end
-
 end

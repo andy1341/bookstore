@@ -1,13 +1,19 @@
 %table.table.table-striped.table-bordered.text-center
   -order.orders_items.each do |item|
     =render 'carts/checkout_cart_row', item: item
-  %tr
+
+  -if order.coupon.present?
     %tr
       %td.text-right{colspan:2}
-        %b= t('.subtotal')
+        %b= t '.discount'
         %td
-          $#{order.subtotal}
-  -unless order.delivery.nil?
+          #{order.coupon.discount}%
+  %tr
+    %td.text-right{colspan:2}
+      %b= t('.subtotal')
+      %td
+        $#{order.subtotal}
+  -if order.delivery.present?
     %tr
       %td.text-right{colspan:2}
         %b= t '.delivery'

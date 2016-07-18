@@ -1,26 +1,26 @@
 require 'rails_helper'
 
-shared_examples_for "facebookable" do
+shared_examples_for 'facebookable' do
   let(:model) { build(described_class.to_s.underscore.to_sym) }
-  let(:bool_values) {[true,false]}
-  let(:provider) {'facebook'}
-  let(:uid) {'1234567890'}
-  let(:info)  {{ email:'andy1341@qip.ru' }}
+  let(:bool_values) { [true, false] }
+  let(:provider) { 'facebook' }
+  let(:uid) { '1234567890' }
+  let(:info) { { email: 'andy1341@qip.ru' } }
 
-  describe '#is_facebook_account'do
+  describe '#is_facebook_account' do
     it 'return bolean value' do
       expect(model.is_facebook_account).to be_in bool_values
     end
   end
 
-  describe '#check_facebook'do
+  describe '#check_facebook' do
     it 'return bolean value' do
-      expect(model.check_facebook(provider,uid)).to be_in bool_values
+      expect(model.check_facebook(provider, uid)).to be_in bool_values
     end
   end
 
-  describe '#save_facebook_data'do
-    let(:data) {{provider:provider, uid:uid}}
+  describe '#save_facebook_data' do
+    let(:data) { { provider: provider, uid: uid } }
     it "return false if facebook data doesn't match" do
       allow(model).to receive(:is_facebook_account).and_return(true)
       allow(model).to receive(:check_facebook).and_return(false)
@@ -32,9 +32,9 @@ shared_examples_for "facebookable" do
     end
   end
 
-  describe '.from_omniauth'do
+  describe '.from_omniauth' do
     let(:auth) do
-      OmniAuth::AuthHash.new(provider:provider, uid: uid, info: info)
+      OmniAuth::AuthHash.new(provider: provider, uid: uid, info: info)
     end
 
     context 'user with email exist' do
@@ -48,7 +48,5 @@ shared_examples_for "facebookable" do
     it 'return User' do
       expect(described_class.from_omniauth(auth)).to be_a described_class
     end
-
   end
-
 end

@@ -35,6 +35,7 @@ en:
         complited: 'Go back to the store'
         comfirm: 'Make order'
     checkout_summary:
+      discount: 'Discount:'
       subtotal: 'Subtotal:'
       total: 'Total:'
       delivery: 'Delivery cost'

@@ -8,12 +8,10 @@
 /.bundle
 
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
-!/log/.keep
-!/tmp/.keep
+/log/
 
 # Ignore Byebug command history file.
 .byebug_history
 .idea/
-public/uploads/
+coverage/
+tmp/

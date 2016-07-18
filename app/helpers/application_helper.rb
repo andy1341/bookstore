@@ -1,8 +1,9 @@
 module ApplicationHelper
   def categories
-    @categories = Category.joins(:books).where('books.category_id is not null').distinct
+    @categories = Category.with_books
   end
+
   def icon(name)
-    tag('span',class:"glyphicon glyphicon-#{name}")
+    tag('span', class: "glyphicon glyphicon-#{name}")
   end
 end
