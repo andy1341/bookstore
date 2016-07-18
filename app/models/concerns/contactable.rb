@@ -12,15 +12,15 @@ module Contactable
   end
 
   def billing_address
-    super || copy_field(:billing_address) || build_billing_address
+    super || build_billing_address
   end
 
   def shipping_address
-    super || copy_field(:shipping_address) || build_shipping_address
+    super || build_shipping_address
   end
 
   def credit_card
-    super || copy_field(:credit_card) || build_credit_card
+    super || build_credit_card
   end
 
   private
@@ -30,6 +30,6 @@ module Contactable
   end
 
   def copy_field(field)
-    try(:user).try(field).try(:dup).try(:save)
+    try(:user).try(field).try(:dup)
   end
 end

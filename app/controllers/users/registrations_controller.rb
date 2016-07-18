@@ -2,10 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def update_resource(resource, params)
-    if resource.is_facebook_account
-      resource.update_without_password(params)
-    else
-      resource.update_with_password(params)
-    end
+    return resource.update_with_password(params) if params[:password]
+    resource.update_without_password(params)
   end
 end
