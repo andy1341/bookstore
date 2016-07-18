@@ -17,7 +17,7 @@ feature 'Home page' do
 
   scenario 'can switch popular book', js: true do
     find('[data-slide=next]').click
-    expect(page).to have_content @books[1].title
+    expect(page).not_to have_content @books[0].title
   end
 
   scenario 'can add book to the cart', js: true do
