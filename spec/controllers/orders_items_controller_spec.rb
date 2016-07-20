@@ -20,11 +20,6 @@ RSpec.describe OrdersItemsController, type: :controller do
     it 'increase orders_items count' do
       expect { action }.to change { order.orders_items.count }.by 1
     end
-
-    it 'assigns @book' do
-      action
-      expect(assigns(:book)).to eq book
-    end
   end
 
   describe 'PUT update' do

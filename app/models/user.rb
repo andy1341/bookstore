@@ -10,6 +10,6 @@ class User < ApplicationRecord
 
   def order_in_progress
     return orders.in_progress.last unless orders.in_progress.empty?
-    orders.new
+    orders.create
   end
 end

@@ -1,5 +1,5 @@
 -if @coupon.present?
   $(".coupon").html("#{escape_javascript(render 'coupons/form', coupon: @coupon)}");
-  $(".cart-content .cart-total").html("$#{@order.subtotal}");
+  $(".cart-content .cart-total").html("$#{current_order.subtotal}");
 -else
   $('h1').after("#{escape_javascript(render('shared/alert', message: t('.invalid_coupon')))}");

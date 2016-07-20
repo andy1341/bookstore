@@ -1,11 +1,9 @@
 class OrdersItemsController < ApplicationController
   before_action :set_order
-  after_action :update_order
+  before_action :find_item, only: [:update, :destroy]
 
   def create
-    @order_item = @order.orders_items.new(order_item_params)
-    @order.save
-    @book = Book.find(order_item_params[:book_id])
+    @order_item = @order.orders_items.create(order_item_params)
     respond_to do |f|
       f.html { redirect_to cart_path }
       f.js
@@ -13,9 +11,7 @@ class OrdersItemsController < ApplicationController
   end
 
   def update
-    @order_item = @order.orders_items.find(params[:id])
     @order_item.update(order_item_params)
-    @orders_items = @order.orders_items
     respond_to do |f|
       f.html { redirect_to cart_path }
       f.js
@@ -23,9 +19,7 @@ class OrdersItemsController < ApplicationController
   end
 
   def destroy
-    @order_item = @order.orders_items.find(params[:id])
     @order_item.destroy
-    @orders_items = @order.orders_items
     respond_to do |f|
       f.html { redirect_to cart_path }
       f.js
@@ -38,11 +32,11 @@ class OrdersItemsController < ApplicationController
     params.require(:orders_item).permit(:count, :book_id)
   end
 
-  def update_order
-    @order.save
-  end
-
   def set_order
     @order = current_order
+  end
+
+  def find_item
+    @order_item = @order.orders_items.find_by_id(params[:id])
   end
 end
