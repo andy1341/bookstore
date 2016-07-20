@@ -4,17 +4,17 @@
     %span= @user.email
 .row
   .col-md-1
-  -if @user.billing_address
+  -if @user.billing_address_id
     .col-md-3
       %h3= t '.title.billing'
-      =@user.billing_address
+      =print_address(@user.billing_address)
 
-  -if @user.shipping_address
+  -if @user.shipping_address_id
     .col-md-3
       %h3= t '.title.shipping'
-      =@user.shipping_address
+      =print_address(@user.shipping_address)
 
-  -if @user.credit_card
+  -if @user.credit_card_id
     .col-md-3
       %h3= t '.title.credit'
-      =@user.credit_card
+      =print_credit_card(@user.credit_card)

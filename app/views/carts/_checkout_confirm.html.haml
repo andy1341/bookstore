@@ -10,13 +10,13 @@
         -if @order.use_billing_address
           =t('.ship_to_billing')
         -else
-          =@order.shipping_address.decorate
+          =print_address(@order.shipping_address.decorate)
     .col-md-3
       %h3= t('carts.checkout_address.billing')
       -unless complited
         =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'address')
       .info
-        =@order.billing_address.decorate
+        =print_address(@order.billing_address.decorate)
     .col-md-3
       %h3= t('carts.checkout.tab-delivery')
       -unless complited
@@ -28,7 +28,7 @@
       -unless complited
         =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'payment')
       .info
-        =@order.credit_card.decorate
+        =print_credit_card(@order.credit_card)
   .row
     .col-md-4.col-md-push-4
       -if complited

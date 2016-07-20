@@ -28,9 +28,15 @@ ActiveAdmin.register Order do
       row :completed_date
       row :delivery
       row :created_at
-      row :billing_address, &:billing_address
-      row :shipping_address, &:shipping_address
-      row :credit_card
+      row :billing_address do |order|
+        print_address(order.billing_address.decorate)
+      end
+      row :shipping_address do |order|
+        print_address(order.shipping_address.decorate)
+      end
+      row :credit_card do |order|
+        print_credit_card(order.credit_card)
+      end
       row :total
     end
   end
