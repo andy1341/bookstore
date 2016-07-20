@@ -15,10 +15,6 @@ RSpec.describe OrdersItem, type: :model do
     is_expected.to receive :set_cost
     subject.save
   end
-  it 'update order after save' do
-    is_expected.to receive :order_update
-    subject.save
-  end
 
   describe '#total' do
     it "return 0 if cost does't set" do
@@ -26,12 +22,7 @@ RSpec.describe OrdersItem, type: :model do
       expect(subject.total).to eq 0
     end
   end
-  describe '#order_update' do
-    it 'call order save' do
-      expect(subject.order).to receive :save
-      subject.order_update
-    end
-  end
+
   describe '#set_cost' do
     it 'set cost to current book prive' do
       subject.set_cost

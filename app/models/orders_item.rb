@@ -9,15 +9,10 @@ class OrdersItem < ApplicationRecord
   validates :book, uniqueness: { scope: :order_id }
 
   before_create :set_cost
-  after_save :order_update
 
   def total
     return 0 if cost.nil?
     count * cost
-  end
-
-  def order_update
-    order.save
   end
 
   def set_cost
