@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
   end
 
   def make_order
-    return new_session_order if @order.make_order && @order.save
+    return new_session_order if @order.make_order!
     @order.errors.add(:base, "Can't make order")
   end
 

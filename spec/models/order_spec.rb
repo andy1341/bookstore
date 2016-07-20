@@ -13,6 +13,27 @@ RSpec.describe Order, type: :model do
     it { is_expected.to accept_nested_attributes_for :shipping_address }
     it { is_expected.to accept_nested_attributes_for :credit_card }
     it { is_expected.to define_enum_for :status }
+    context 'order in_progress' do
+      it { is_expected.not_to validate_presence_of(:user)}
+      it { is_expected.not_to validate_presence_of(:billing_address_id)}
+      it { is_expected.not_to validate_presence_of(:delivery)}
+      it { is_expected.not_to validate_presence_of(:credit_card_id)}
+      it { is_expected.not_to validate_presence_of(:orders_items)}
+      it { is_expected.not_to validate_presence_of(:shipping_address_id)}
+    end
+    context 'order not in_progress' do
+      subject do
+        order = create(:order)
+        order.make_order!
+        order
+      end
+      it { is_expected.to validate_presence_of(:user)}
+      it { is_expected.to validate_presence_of(:billing_address_id)}
+      it { is_expected.to validate_presence_of(:delivery)}
+      it { is_expected.to validate_presence_of(:credit_card_id)}
+      it { is_expected.to validate_presence_of(:orders_items)}
+      it { is_expected.to validate_presence_of(:shipping_address_id)}
+    end
   end
 
   it { is_expected.to delegate_method(:empty?).to(:orders_items) }
@@ -22,24 +43,6 @@ RSpec.describe Order, type: :model do
   end
 
   let(:order) { FactoryGirl.create(:order) }
-
-  describe '#can_make_order?' do
-    after { expect(order.can_make_order?).to eq false }
-
-    [:user,
-     :billing_address,
-     :shipping_address,
-     :delivery,
-     :credit_card].each do |field|
-      it "return false if #{field} blank" do
-        order.update("#{field}":nil)
-      end
-    end
-
-    it 'return false if order items empty' do
-      order.orders_items = []
-    end
-  end
 
   describe '#set_total' do
     it 'call total' do

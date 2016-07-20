@@ -4,6 +4,13 @@ class Order < ApplicationRecord
   belongs_to :coupon
   has_many :orders_items, -> { order(created_at: :desc) }, dependent: :destroy
 
+  validates :user, presence: true, unless: :in_progress?
+  validates :billing_address_id, presence: true, unless: :in_progress?
+  validates :shipping_address_id, presence: true, if: :validate_shipping?
+  validates :delivery, presence: true, unless: :in_progress?
+  validates :credit_card_id, presence: true, unless: :in_progress?
+  validates :orders_items, presence: true, unless: :in_progress?
+
   include Contactable
 
   DEFAULT_DISCOUNT_COEFFICIENT = 1
@@ -31,7 +38,7 @@ class Order < ApplicationRecord
     state :cancelled
 
     event :make_order do
-      transitions from: :in_progress, to: :awaiting_shipment, guard: :can_make_order?
+      transitions from: :in_progress, to: :awaiting_shipment
     end
 
     event :shipped do
@@ -45,17 +52,6 @@ class Order < ApplicationRecord
     event :cancel do
       transitions from: [:in_progress, :awaiting_shipment, :shipped], to: :cancelled
     end
-  end
-
-  def can_make_order?
-    errors.add(:base, 'Order already done') unless in_progress?
-    errors.add(:user, :blank) if user.blank?
-    errors.add(:billing_address, :blank) if billing_address_id.blank?
-    errors.add(:shipping_address, :blank) if !use_billing_address && shipping_address_id.blank?
-    errors.add(:delivery, :blank) if delivery.blank?
-    errors.add(:credit_card, :blank) if credit_card_id.blank?
-    errors.add(:orders_items, :blank) if orders_items.blank?
-    errors.empty?
   end
 
   def mark_complete
@@ -97,5 +93,11 @@ class Order < ApplicationRecord
 
   def contains(book)
     !!orders_items.find_by_book_id(book.id)
+  end
+
+  private
+
+  def validate_shipping?
+    !in_progress? && !use_billing_address
   end
 end
