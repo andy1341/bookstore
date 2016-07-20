@@ -7,6 +7,7 @@ class Book < ApplicationRecord
   mount_uploader :image, ImageUploader
   validates :title, uniqueness: true
   validates :title, :price, :category, :author, presence: true
+  delegate :proved, :unproved, to: :reviews, prefix: true
 
   scope :ordered_books, -> do
     joins(:orders_items)

@@ -2,8 +2,8 @@
 
 .row
   .col-md-4
-    -if @book.reviews.proved.present?
-      =render collection: @book.reviews.proved, partial: 'books/review'
+    -if @book.reviews_proved.present?
+      =render collection: @book.reviews_proved, partial: 'books/review'
     -else
       %h3= t '.empty'
 
