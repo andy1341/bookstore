@@ -7,6 +7,7 @@ class Order < ApplicationRecord
   include Contactable
 
   DEFAULT_DISCOUNT_COEFFICIENT = 1
+  TEMPORARY_LIVE_DURATION = 1.day
   attr_accessor :active_admin_requested_event
 
   delegate :empty?, to: :orders_items
@@ -15,6 +16,8 @@ class Order < ApplicationRecord
   delegate :credit_card, to: :user, prefix: true
 
   before_save :set_total
+
+  scope :temporary, -> {where('user_id is NULL AND created_at < ?', TEMPORARY_LIVE_DURATION.ago)}
 
   enum status: [:in_progress, :awaiting_shipment, :shipped, :completed, :cancelled]
 
