@@ -1,0 +1,5 @@
+%h3= t '.title'
+=form_for @form, url: checkout_path,remote:true, html: {method: :put, class:'form addresses'} do |f|
+  =f.hidden_field 'step', value: :payment
+  =render 'credit_cards/form', card: :credit_card, form: f
+  =render 'continue_btn', f:f

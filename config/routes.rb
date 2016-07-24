@@ -3,6 +3,7 @@ Rails.application.routes.draw do
       { omniauth_callbacks: 'users/omniauth_callbacks',
         registrations: 'users/registrations' }
   devise_for :admin_users, ActiveAdmin::Devise.config
+
   ActiveAdmin.routes(self)
   root 'home#index'
   get 'home/index'
@@ -13,12 +14,10 @@ Rails.application.routes.draw do
   resources :authors, only: [:show]
   resources :orders_items, only: [:create, :update, :destroy]
   resources :reviews, only: [:create]
-
-  resource  :cart, only: [:show]
-  get 'checkout' => 'carts#checkout', as: 'checkout'
-
-  patch 'orders/make_order' => 'orders#make_order', as: 'make_order'
   resources :orders, only: [:update, :show]
+  resource :checkout, only: [:show, :update]
+  resource  :cart, only: [:show]
 
+  patch 'checkouts/make_order', as: 'make_order'
   patch 'coupons/apply', as: 'coupons'
 end

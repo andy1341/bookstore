@@ -1,6 +1,6 @@
 %table.table.table-striped.table-bordered.text-center
   -order.orders_items.each do |item|
-    =render 'carts/checkout_cart_row', item: item
+    =render 'cart_row', item: item
 
   -if order.coupon.present?
     %tr

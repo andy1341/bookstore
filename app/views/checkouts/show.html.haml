@@ -8,11 +8,11 @@
     =tab_header 'complete', t('.tab-complete'), false
   %div.tab-content
     %div.tab-pane.fade-in.active{role:"tabpanel", id:"address"}
-      = render 'carts/checkout_address'
+      = render 'address'
     %div.tab-pane.fade{role:"tabpanel", id:"delivery"}
-      = render 'carts/checkout_delivery'
+      = render 'delivery'
     %div.tab-pane.fade{role:"tabpanel", id:"payment"}
-      = render 'carts/checkout_payment'
+      = render 'payment'
     %div.tab-pane.fade{role:"tabpanel", id:"confirm"}
 
     %div.tab-pane.fade{role:"tabpanel", id:"complete"}
@@ -20,4 +20,4 @@
 .col-md-4
   %h3.text-center= t('.summary')
   .order-summary
-    =render 'checkout_summary', order: @order
+    =render 'summary', order: current_order

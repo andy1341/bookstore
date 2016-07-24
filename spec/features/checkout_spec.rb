@@ -11,7 +11,7 @@ feature 'Checkout', checkout: true do
     create_list(:delivery, 3)
     visit_cart_with(book)
     click_on I18n.t('carts.cart_content.make-order')
-    check 'order[use_billing_address]'
+    check 'checkout_form[use_billing_address]'
   end
 
   scenario 'click Use billing address' do

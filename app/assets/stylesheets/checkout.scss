@@ -20,7 +20,7 @@
     overflow: hidden;
     max-height:40em;
   }
-  #order_use_billing_address:checked ~ .shipping-address {
+  #checkout_form_use_billing_address:checked ~ .shipping-address {
     max-height:0;
   }
 }

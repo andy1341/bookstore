@@ -7,28 +7,28 @@
       -unless complited
         =button_tag(icon('edit'),class:'btn btn-link tab-link',id:'address')
       .info
-        -if @order.use_billing_address
+        -if @form.use_billing_address
           =t('.ship_to_billing')
         -else
-          =print_address(@order.shipping_address.decorate)
+          =print_address(@form.shipping_address.decorate)
     .col-md-3
       %h3= t('carts.checkout_address.billing')
       -unless complited
         =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'address')
       .info
-        =print_address(@order.billing_address.decorate)
+        =print_address(@form.billing_address.decorate)
     .col-md-3
       %h3= t('carts.checkout.tab-delivery')
       -unless complited
         =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'delivery')
       .info
-        =@order.delivery.name
+        =@form.delivery.name
     .col-md-3
       %h3= t('carts.checkout.tab-payment')
       -unless complited
         =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'payment')
       .info
-        =print_credit_card(@order.credit_card)
+        =print_credit_card(@form.credit_card)
   .row
     .col-md-4.col-md-push-4
       -if complited

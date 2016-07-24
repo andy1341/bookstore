@@ -1,5 +1,0 @@
-%h3= t '.title'
-=form_for @order,remote:true, html: {method: :put, class:'form addresses'} do |f|
-  =f.hidden_field 'next_step', value: :confirm
-  =render 'credit_cards/form', card: :credit_card, form: f
-  =render 'checkout_continue_btn', f:f

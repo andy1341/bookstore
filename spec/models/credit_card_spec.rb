@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe CreditCard, type: :model do
   context 'fields' do
     it { is_expected.to validate_presence_of :number }
-    it { is_expected.to validate_uniqueness_of :number }
     it { is_expected.to validate_presence_of :expiration_month }
     it { is_expected.to validate_presence_of :expiration_year }
     it { is_expected.to validate_presence_of :code }

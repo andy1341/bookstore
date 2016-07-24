@@ -1,5 +1,5 @@
 class CreditCard < ApplicationRecord
-  validates :number, presence: true, uniqueness: true
+  validates :number, presence: true
   validates :expiration_month, presence: true
   validates :expiration_year, presence: true
   validates :code, presence: true
