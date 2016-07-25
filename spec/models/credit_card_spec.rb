@@ -6,6 +6,8 @@ RSpec.describe CreditCard, type: :model do
     it { is_expected.to validate_presence_of :expiration_month }
     it { is_expected.to validate_presence_of :expiration_year }
     it { is_expected.to validate_presence_of :code }
+    it { is_expected.to allow_value('1234123412341234').for(:number) }
+    it { is_expected.not_to allow_value('1234').for(:number) }
   end
 
   let(:is_int) { proc { |y| y.is_a? Integer } }

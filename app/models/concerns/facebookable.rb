@@ -10,13 +10,10 @@ module Facebookable
   end
 
   def save_facebook_data(params)
-    if is_facebook_account
-      return true if check_facebook(params[:provider], params[:uid])
-      errors.add(:base, "#{params[:email]} is attach for another account")
-      false
-    else
-      update(params)
-    end
+    return update(params) unless is_facebook_account
+    return true if check_facebook(params[:provider], params[:uid])
+    errors.add(:base, "#{params[:email]} is attach for another account")
+    false
   end
 
   module ClassMethods

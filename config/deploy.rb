@@ -1,3 +1,9 @@
+class Net::SSH::Authentication::KeyManager
+  def use_agent?
+    false
+  end
+end
+
 server '178.62.227.19', roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:andy1341/bookstore.git'
