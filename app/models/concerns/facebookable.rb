@@ -13,6 +13,7 @@ module Facebookable
     return update(params) unless is_facebook_account
     return true if check_facebook(params[:provider], params[:uid])
     errors.add(:base, "#{params[:email]} is attach for another account")
+
     false
   end
 
@@ -39,9 +40,7 @@ module Facebookable
     def new_with_session(params, session)
       super.tap do |user|
         data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
-        if data
-          user.email = data['email'] if user.email.blank?
-        end
+        user.email = data['email'] if data && user.email.blank?
       end
     end
   end

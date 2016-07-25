@@ -16,7 +16,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
       end
 
       it 'redirect' do
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to user_root_path
       end
     end
 

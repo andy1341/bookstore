@@ -26,7 +26,9 @@
               %li
                 =link_to t('menu.admin'), admin_root_path
             %li
-              =link_to t('menu.profile'), user_path
+              =link_to t('menu.orders'), orders_path
+            %li
+              =link_to t('menu.profile'), user_root_path
             %li
               =link_to t('menu.logout'), destroy_user_session_path, method: :delete
           -else

@@ -10,3 +10,5 @@ en:
       subtotal: 'Subtotal'
       shipping: 'Shipping'
       total: 'Total'
+    index:
+      title: 'Orders'

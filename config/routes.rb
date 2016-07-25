@@ -8,13 +8,13 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'home/index'
 
-  get 'users/show', as: 'user'
+  get 'users/show', as: 'user_root'
   resources :books, only: [:show]
   resources :categories, only: [:show]
   resources :authors, only: [:show]
   resources :orders_items, only: [:create, :update, :destroy]
   resources :reviews, only: [:create]
-  resources :orders, only: [:update, :show]
+  resources :orders, only: [:index, :show]
   resource :checkout, only: [:show, :update]
   resource  :cart, only: [:show]
 
