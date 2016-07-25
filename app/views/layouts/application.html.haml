@@ -44,7 +44,7 @@
                 %li
                   =link_to t('menu.signup'), new_user_registration_path
     .container
-      =render('shared/alert', message: notice) if notice.present?
+      =render('shared/notice', message: notice) if notice.present?
       -unless breadcrumbs.empty?
         %ol.breadcrumb
           =render_breadcrumbs :tag => :li, :separator => ""

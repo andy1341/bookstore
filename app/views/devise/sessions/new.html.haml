@@ -1,7 +1,7 @@
 .col-md-6.col-md-push-3
   %h2= t '.title'
   -flash.each do |name, msg|
-    =render('shared/alert', message:msg)
+    =render('shared/notice', message:msg)
   =devise_error_messages!
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 
