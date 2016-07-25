@@ -1,9 +1,8 @@
--if @order.orders_items.empty?
-  .container.cart-content.text-center
+.container.cart-content.text-center
+  -if @order.orders_items.empty?
     %h2= t '.empty'
--else
-  .container.cart-content
-    %table.table.books
+  -else
+    %table.table.books.text-left
       %thead
         %tr
           %th

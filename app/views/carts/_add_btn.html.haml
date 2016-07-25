@@ -1,7 +1,7 @@
 -if in_cart book
   =link_to t('.text'), cart_path, class: 'btn btn-primary to-cart'
 -else
-  = form_for order_item, remote: true, html: {class:'add-to-cart form form-inline'} do |f|
+  = form_for order_item, remote: true, format: :json, html: {class:'add-to-cart form form-inline'} do |f|
     .input-group
       =f.number_field :count, value:1, min:1, max:20, class:'form-control'
       .input-group-btn

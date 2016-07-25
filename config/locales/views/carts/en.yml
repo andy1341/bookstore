@@ -39,3 +39,5 @@ en:
       subtotal: 'Subtotal:'
       total: 'Total:'
       delivery: 'Delivery cost'
+    cart_row:
+      confirm: "Are you sure you wish to delete the product '%{book}' from your cart?"

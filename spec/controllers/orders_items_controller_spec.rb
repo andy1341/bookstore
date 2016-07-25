@@ -9,7 +9,7 @@ RSpec.describe OrdersItemsController, type: :controller do
 
   describe 'POST create' do
     let(:action) do
-      post :create, format: :js, params: {
+      post :create, format: :json, params: {
         orders_item: {
           book_id: book.id,
           count: 1
@@ -24,7 +24,7 @@ RSpec.describe OrdersItemsController, type: :controller do
 
   describe 'PUT update' do
     let(:action) do
-      put :update, format: :js, params: {
+      put :update, format: :json, params: {
         id: orders_item.id,
         orders_item: {
           count: 2
@@ -39,7 +39,7 @@ RSpec.describe OrdersItemsController, type: :controller do
 
   describe 'DELETE destroy' do
     let(:action) do
-      delete :destroy, format: :js, params: {
+      delete :destroy, format: :json, params: {
         id: orders_item.id
       }
     end
