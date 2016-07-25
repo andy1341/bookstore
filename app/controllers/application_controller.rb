@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_order, :set_user
+  helper_method :current_order
 
   before_action :configure_device, if: :devise_controller?
   before_action :set_breadcrumbs
@@ -23,16 +23,12 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_device
-    set_user
+    @user ||= User.new
     devise_parameter_sanitizer.permit(:account_update, keys: [
                                         :id, billing_address_attributes: Address.attribute_names,
                                              shipping_address_attributes: Address.attribute_names,
                                              credit_card_attributes: [:id, :number, :code, :expiration_month, :expiration_year]
                                       ])
-  end
-
-  def set_user
-    @user ||= User.new
   end
 
   def set_breadcrumbs; end
