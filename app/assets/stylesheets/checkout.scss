@@ -1,0 +1,39 @@
+.nav-tabs .disabled {
+  pointer-events: none;
+  color:#dedede
+}
+
+.order-summary {
+  table tr td{
+    vertical-align: middle;
+  }
+}
+
+.addresses {
+  .billing-address {
+    margin-top:3em;
+  }
+
+  .shipping-address {
+    transition-duration: 1s;
+    position: static;
+    overflow: hidden;
+    max-height:40em;
+  }
+  #checkout_form_use_billing_address:checked ~ .shipping-address {
+    max-height:0;
+  }
+}
+
+.confirm {
+  .col-md-3 {
+    h3 {
+      display: inline-block;
+      font-size: 16px;
+      font-weight:bold;
+    }
+    h3+button {
+      padding: 0;
+    }
+  }
+}

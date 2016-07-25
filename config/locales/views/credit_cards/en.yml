@@ -1,0 +1,5 @@
+en:
+  credit_cards:
+    view:
+      number: 'Number:'
+      date: 'Expiration date:'

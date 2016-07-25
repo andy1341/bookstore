@@ -1,0 +1,26 @@
+%table.table.table-striped.table-bordered.text-center
+  -order.orders_items.each do |item|
+    =render 'cart_row', item: item
+
+  -if order.coupon.present?
+    %tr
+      %td.text-right{colspan:2}
+        %b= t '.discount'
+        %td
+          #{order.coupon.discount}%
+  %tr
+    %td.text-right{colspan:2}
+      %b= t('.subtotal')
+      %td
+        $#{order.subtotal}
+  -if order.delivery.present?
+    %tr
+      %td.text-right{colspan:2}
+        %b= t '.delivery'
+        %td
+          $#{order.delivery.cost}
+  %tr
+    %td.text-right{colspan:2}
+      %b= t '.total'
+    %td
+      $#{order.total}

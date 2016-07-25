@@ -1,0 +1,23 @@
+%h1 Checkout
+.col-md-8.checkout
+  %ul.nav.nav-tabs{role:"tablist"}
+    =tab_header 'address', t('.tab-address'), true, true
+    =tab_header 'delivery', t('.tab-delivery'), false
+    =tab_header 'payment', t('.tab-payment'), false
+    =tab_header 'confirm', t('.tab-confirm'), false
+    =tab_header 'complete', t('.tab-complete'), false
+  %div.tab-content
+    %div.tab-pane.fade-in.active{role:"tabpanel", id:"address"}
+      = render 'address'
+    %div.tab-pane.fade{role:"tabpanel", id:"delivery"}
+      = render 'delivery'
+    %div.tab-pane.fade{role:"tabpanel", id:"payment"}
+      = render 'payment'
+    %div.tab-pane.fade{role:"tabpanel", id:"confirm"}
+
+    %div.tab-pane.fade{role:"tabpanel", id:"complete"}
+
+.col-md-4
+  %h3.text-center= t('.summary')
+  .order-summary
+    =render 'summary', order: current_order

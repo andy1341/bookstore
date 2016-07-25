@@ -1,0 +1,9 @@
+.user-profile {
+  h1 {
+    display: inline-block;
+  }
+  h1+a{
+    display: inline-block;
+    padding: 0;
+  }
+}

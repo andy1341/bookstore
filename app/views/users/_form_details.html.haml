@@ -1,0 +1,19 @@
+.col-sm-4
+  %h3= t '.title.billing'
+  %div
+    =user_form do |f|
+      =render 'addresses/form', address: :billing_address, form: f
+      = f.submit t('.btn_text'), class:'btn btn-primary'
+
+.col-sm-4
+  %h3= t '.title.shipping'
+  %div
+    =user_form do |f|
+      =render 'addresses/form', address: :shipping_address, form: f
+      = f.submit t('.btn_text'), class:'btn btn-primary'
+.col-sm-4
+  %h3= t '.title.cart'
+  %div
+    =user_form do |f|
+      =render 'credit_cards/form', card: :credit_card, form: f
+      = f.submit t('.btn_text'), class:'btn btn-primary'

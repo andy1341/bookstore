@@ -1,0 +1,11 @@
+.review
+  .row
+    .col-md-6
+      %b= t '.rating'
+      -(1..5).to_a.each do |val|
+        =radio_button :"review_#{review.id}", :rating, val, class: 'star', checked: val==review.rating.to_i, disabled:true
+    .col-md-6.text-right= I18n.l review.created_at, format: :short
+  .row
+    .col-md-12.author by #{review.user.email}
+  .row
+    .col-md-12.review-text= review.text

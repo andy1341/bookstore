@@ -1,0 +1,26 @@
+en:
+  devise:
+    registrations:
+      edit:
+        title: 'Edit user profile'
+        remove:
+          title: 'Cancel my account'
+          btn: "Cancel my account"
+          confirm: 'Are you sure?'
+      new:
+        title: 'Sign Up'
+        sign_up_btn: 'Sign up'
+        sign_in_btn: 'Sign in'
+        pswd_length_notice: '(%{length} characters minimum)'
+    sessions:
+      new:
+        title: 'Sign in'
+        btn: 'Sign in'
+    shared:
+      links:
+        log_in: 'Log in'
+        sign_up: 'Sign up'
+        forgot: 'Forgot your password?'
+        not_receive_confirmation: "Didn't receive confirmation instructions?"
+        not_receive_unlock: "Didn't receive unlock instructions?"
+        sign_with: 'Sign in with %{with}'

@@ -1,0 +1,6 @@
+$(".cart-link").html("#{escape_javascript(render 'layouts/cart_text')}");
+-if @order.empty?
+  $(".cart-content").html("#{escape_javascript(render 'carts/cart_content')}");
+-else
+  $("#orders_item_#{@order_item.id}").remove()
+  $(".cart-content .cart-total").html("$#{current_order.subtotal}");

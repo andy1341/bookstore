@@ -1,0 +1,27 @@
+.cart-btn-container {
+  margin-left: 15px;
+  display: inline-block;
+
+  .add-to-cart {
+    width: 100px;
+    display: inline-block;
+  }
+
+}
+
+.orders_item {
+  .count {
+    width: 5em;
+  }
+}
+
+table.books {
+  tr {
+    td:nth-child(4) {
+      width: 100px;
+    }
+    td {
+      vertical-align: middle;
+    }
+  }
+}

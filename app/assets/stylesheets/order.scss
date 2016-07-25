@@ -1,0 +1,18 @@
+.order-show {
+  h2 {
+    display: inline-block;
+  }
+  .status {
+    display: inline-block;
+    color: #939393;
+    padding-left: 20px;
+    text-decoration: underline;
+  }
+  table {
+    tr {
+      td {
+        vertical-align: middle;
+      }
+    }
+  }
+}

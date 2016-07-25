@@ -1,0 +1,19 @@
+%p#notice= notice
+
+%h1= @book.title
+
+.container.book-detail
+  .row
+    .col-xs-4.image
+      =image_tag @book.image
+    .col-xs-8
+      .row
+        .price
+          $
+          %b= @book.price
+        .cart-btn-container{id: @book.id}
+          =render 'carts/add_btn', orders_item: @orders_item, book: @book
+      .row.description
+        =@book.description
+  .row.reviews
+    =render 'books/reviews'

@@ -1,0 +1,11 @@
+%tr
+  %td
+    =link_to orders_item.book do
+      =image_tag orders_item.book.image, width: '100px'
+  %td
+    =link_to orders_item.book do
+      %h3= orders_item.book.title
+    .description= orders_item.book.short_description
+  %td $#{orders_item.cost}
+  %td= orders_item.count
+  %td= orders_item.total

@@ -1,0 +1,29 @@
+.container
+  %h1.text-center= t '.title'
+  %br
+  .carousel.slide#popular{data:{ride:'carousel',interval:20000000}}
+    .carousel-inner{role:'listbox'}
+      -@popular_books.each_with_index do |book,i|
+        .item{class:i==0?'active':''}
+          .row
+            .col-sm-8.col-sm-push-2
+              %h2
+                =link_to book.title, book
+                %small= link_to book.author.title, book.author
+          .row
+            .col-sm-4
+              =link_to image_tag(book.image, class:['image']), book
+            .col-sm-8
+              .row.description
+                =book.description
+              .row
+                %div.price
+                  %b$#{book.price}
+                .cart-btn-container{id: book.id}
+                  =render 'carts/add_btn', book: book, orders_item: OrdersItem.new
+    %a.left.carousel-control{href:'#popular', role:'button', 'data-slide': 'prev'}
+      %span.glyphicon.glyphicon-chevron-left{'aria-hidden':true}
+      %span.sr-only Previous
+    %a.right.carousel-control{href:'#popular', role:'button', 'data-slide': 'next'}
+      %span.glyphicon.glyphicon-chevron-right{'aria-hidden':true}
+      %span.sr-only Next

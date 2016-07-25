@@ -1,0 +1,27 @@
+.book-detail {
+  .image img {
+    width: 100%;
+  }
+  .price {
+    display: inline-block;
+  }
+  .reviews {
+    .review {
+      margin: 10px 0px;
+      .rating-cancel {
+        display:none!important;
+      }
+      .star-rating-control {
+        display: inline-block;
+      }
+      .author {
+        color: cornflowerblue;
+        margin-left: 15px;
+      }
+      .review-text {
+        padding:10px;
+      }
+    }
+  }
+
+}

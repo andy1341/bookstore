@@ -1,0 +1,6 @@
+en:
+  categories:
+    show:
+      empty: 'There is no books'
+    book:
+      btn: 'View Details'

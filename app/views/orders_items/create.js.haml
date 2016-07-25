@@ -1,0 +1,5 @@
+-if @order.errors.any? || @order_item.errors.any?
+  alert("#{@order_item.errors.to_a.join('\n')} \n #{@order.errors.to_a.join('\n')}")
+-else
+  $(".cart-link").html("#{escape_javascript(render 'layouts/cart_text')}");
+  $(".cart-btn-container##{@order_item.book.id}").html("#{escape_javascript(render 'carts/add_btn', book: @order_item.book)}");

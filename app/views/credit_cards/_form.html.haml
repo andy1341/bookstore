@@ -1,0 +1,17 @@
+=form.fields_for card do |f|
+  .form-group
+    = f.label :number
+    = f.text_field :number, class: 'form-control'
+  .form-group
+    .row
+      .col-md-6
+        = f.label :expiration_month
+        %br
+        = f.select :expiration_month, CreditCard.months, class: 'form-control'
+      .col-md-6
+        = f.label :expiration_year
+        %br
+        = f.select :expiration_year, CreditCard.years, class: 'form-control'
+  .form-group
+    = f.label :code
+    = f.text_field :code

@@ -1,0 +1,7 @@
+-if @form.errors.any?
+  $('h1').after('#{escape_javascript(render 'shared/alert', message: @form.errors.to_a.join('<br>').html_safe)}')
+-else
+  $('.checkout .nav-tabs li').filter('.active').next('li').removeClass('disabled').find('a[data-toggle="tab"]').tab('show');
+  $('.tab-content #complete').html('#{escape_javascript(render 'confirm', complited: true)}')
+  $('.checkout .nav-tabs li').filter(':not(.active)').addClass('disabled');
+  $(".cart-link").html("#{escape_javascript(render 'layouts/cart_text')}");

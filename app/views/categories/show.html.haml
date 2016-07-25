@@ -1,0 +1,13 @@
+%h1= @category.name
+
+%p#notice= notice
+
+-if @books.count > 0
+  .container
+    .row
+      -@books.each do |book|
+        =render 'book', book: book
+-else
+  %p= t '.empty'
+
+=paginate @books

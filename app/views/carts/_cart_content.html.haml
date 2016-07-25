@@ -1,0 +1,25 @@
+-if @order.orders_items.empty?
+  .container.cart-content.text-center
+    %h2= t '.empty'
+-else
+  .container.cart-content
+    %table.table.books
+      %thead
+        %tr
+          %th
+          %th= t '.book'
+          %th= t '.price'
+          %th= t '.quantity'
+          %th= t '.total'
+          %th
+      %tbody
+        -@order.orders_items.each do |item|
+          =render 'carts/cart_row', item:item
+        %tr
+          %td.text-right.coupon{colspan:4}
+            =render 'coupons/form', coupon: @order.coupon
+          %td{colspan:2}
+            %b.cart-total
+              $#{current_order.total}
+    .col-md-4.col-md-push-4
+      =link_to t('.make-order'), checkout_path, class: 'btn btn-success btn-block'

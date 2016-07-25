@@ -1,0 +1,30 @@
+en:
+  checkouts:
+    show:
+      tab-address: 'Address'
+      tab-delivery: 'Delivery'
+      tab-payment: 'Payment'
+      tab-confirm: 'Confirm'
+      tab-complete: 'Complete'
+      summary: 'Order summary'
+    address:
+      billing: 'Billing Address'
+      shipping: 'Shipping Address'
+      use-btn: 'Use billing address'
+    continue_btn:
+      text: 'Save and continue'
+    payment:
+      title: 'Credit Card'
+    confirm:
+      title:
+        complited: 'Complited'
+        confirm: 'Confirm'
+      ship_to_billing: 'Ship to billing address'
+      btn_text:
+        complited: 'Go back to the store'
+        comfirm: 'Make order'
+    summary:
+      discount: 'Discount:'
+      subtotal: 'Subtotal:'
+      total: 'Total:'
+      delivery: 'Delivery cost'

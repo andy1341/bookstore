@@ -1,0 +1,12 @@
+%h2= t '.title'
+-[:in_progress, :awaiting_shipment, :shipped, :completed, :cancelled].each_with_index do |status,i|
+  -unless @user.orders.send(status).empty?
+    .orders-by-status.col-md-6
+      %table.table
+        %caption= status.to_s.humanize
+        %tr
+          %th number
+          %th complited at
+          %th total
+          %th
+        =render partial: 'users/order', collection: @user.orders.send(status)

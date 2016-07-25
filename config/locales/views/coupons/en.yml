@@ -1,0 +1,7 @@
+en:
+  coupons:
+    form:
+      submit: 'Apply coupon'
+      discount: "Your discount %{discount}%"
+    apply:
+      invalid_coupon: 'There is no such coupon'

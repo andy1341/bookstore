@@ -1,0 +1,12 @@
+en:
+  orders:
+    show:
+      title: 'Order #%{id}'
+      th:
+        book: 'Book'
+        price: 'Price'
+        quantity: 'Quantity'
+        total: 'Total'
+      subtotal: 'Subtotal'
+      shipping: 'Shipping'
+      total: 'Total'
