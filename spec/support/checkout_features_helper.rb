@@ -1,27 +1,23 @@
 module CheckoutFeaturesHelper
-  def fill_address_step
-    within '.tab-pane.active .billing-address' do
-      address_attributes.each do |attribute, value|
+  def fill_address_step(attributes = {}, type='billing')
+    within ".tab-pane.active .#{type}-address" do
+      attributes.each do |attribute, value|
         fill_in attribute.to_s.humanize, with: value
       end
     end
-    checkout_continue
-    expect_tab(:delivery)
   end
 
-  def fill_delivery_step
-    choose Delivery.first.name
+  def fill_delivery_step(delivery = Delivery.first.name)
+    choose delivery
     checkout_continue
     expect_tab(:payment)
   end
 
-  def fill_payment_step
+  def fill_payment_step(attributes)
     within '.tab-pane.active' do
-      fill_in 'Number', with: credit_card_attributes[:number]
-      fill_in 'Code', with: credit_card_attributes[:code]
+      fill_in 'Number', with: attributes[:number]
+      fill_in 'Code', with: attributes[:code]
     end
-    checkout_continue
-    expect_tab(:confirm)
   end
 
   def fill_confirm_step

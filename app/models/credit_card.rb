@@ -1,5 +1,7 @@
 class CreditCard < ApplicationRecord
+  NUMBER_FORMAT = /\d{16}/
   validates :number, presence: true
+  validates :number, format: NUMBER_FORMAT
   validates :expiration_month, presence: true
   validates :expiration_year, presence: true
   validates :code, presence: true
