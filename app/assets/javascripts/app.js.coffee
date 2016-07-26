@@ -1,6 +1,7 @@
-App = {
+App =
   init: ->
     this.cart();
+    this.book();
   cart: ->
     $(".add-to-cart").on("ajax:complete", (e, data, status, xhr) ->
       data = data.responseJSON;
@@ -24,7 +25,20 @@ App = {
       else
         $("#orders_item_"+data.orders_item_id).remove()
     )
-}
+  book: ->
+    $('#new_review').on("ajax:complete", (e, data, status, xhr) ->
+      target = e.currentTarget
+      data = data.responseJSON
+      if data.errors
+        for field, error of data.errors
+          App.Helpers.error(field,error)
+      else
+        $('.new-review').html(data.message);
+    )
+  Helpers:
+    error: (field, error)->
+      $(".form-group."+field).after("<span class='alert alert-danger'>"+error+"</span>")
+
 
 $(document).ready ->
   App.init();

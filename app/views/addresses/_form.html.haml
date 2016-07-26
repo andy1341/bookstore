@@ -1,8 +1,8 @@
 =form.fields_for address do |f|
   -[:firstname,:lastname, :street_address, :city, :zip, :phone].each do |field|
-    .form-group
+    .form-group{class: field}
       = f.label field
-      = f.text_field field, class: 'form-control'
+      = f.text_field field, class: 'form-control', required: true
 
   .form-group
     = f.label :country_id

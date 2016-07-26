@@ -2,13 +2,8 @@ class CouponsController < ApplicationController
   def apply
     @coupon = Coupon.find_by_name(coupon_params[:name])
     current_order.apply_coupon(@coupon)
-    respond_to do |f|
-      f.html do
-        flash[:notice] = I18n.t('coupons.apply.invalid_coupon') unless @coupon.present?
-        redirect_to cart_path
-      end
-      f.js
-    end
+    flash[:alert] = t('coupons.apply.invalid_coupon') if @coupon.nil?
+    redirect_to :back
   end
 
   private

@@ -1,7 +1,7 @@
 =form.fields_for card do |f|
-  .form-group
+  .form-group.number
     = f.label :number
-    = f.text_field :number, class: 'form-control'
+    = f.text_field :number, class: 'form-control', required: true
   .form-group
     .row
       .col-md-6
@@ -12,6 +12,6 @@
         = f.label :expiration_year
         %br
         = f.select :expiration_year, CreditCard.years, class: 'form-control'
-  .form-group
+  .form-group.code
     = f.label :code
-    = f.text_field :code
+    = f.text_field :code, required: true
