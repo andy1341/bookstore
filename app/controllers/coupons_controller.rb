@@ -3,7 +3,7 @@ class CouponsController < ApplicationController
     @coupon = Coupon.find_by_name(coupon_params[:name])
     current_order.apply_coupon(@coupon)
     flash[:alert] = t('coupons.apply.invalid_coupon') if @coupon.nil?
-    redirect_to :back
+    redirect_to cart_path
   end
 
   private

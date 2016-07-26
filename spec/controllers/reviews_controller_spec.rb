@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ReviewsController, type: :controller do
   describe 'POST create' do
     let(:action) do
-      post :create, format: :js, params: {
+      post :create, format: :json, params: {
         review: attributes_for(:review)
       }
     end

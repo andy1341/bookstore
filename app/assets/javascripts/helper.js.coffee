@@ -1,8 +1,11 @@
 window.Helper =
-  error: (message, field) ->
+  showError: (message, field) ->
     selector =
       if field
-        ".form-group." + field
+        ".text-danger." + field
       else
         'h1'
-    $(selector).after("<span class='alert alert-danger'>"+message+"</span>")
+    $(selector).html(message)
+  showErrors: (errors) ->
+    for field, message of errors
+      this.showError(message[0], field)

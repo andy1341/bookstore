@@ -1,9 +1,9 @@
-=form_for @form, url: checkout_path,remote:true, html: {method: :put, class:'form addresses'} do |f|
+=form_for @form, url: checkout_path,remote:true, html: {method: :put, class:'checkout_form'} do |f|
   =f.hidden_field 'step', value: :delivery
   .row
     .col-md-10.col-md-push-1
-      -@deliveries.each do |delivery|
+      -@deliveries.each_with_index do |delivery, i|
         .form-group
-          =f.radio_button :delivery_id, delivery.id
+          =f.radio_button :delivery_id, delivery.id, checked: i==0
           =f.label "delivery_id_#{delivery.id}", "#{delivery.name} - $#{delivery.cost}"
   =render 'continue_btn', f:f

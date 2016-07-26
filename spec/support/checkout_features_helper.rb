@@ -28,12 +28,8 @@ module CheckoutFeaturesHelper
       expect(page).to have_content expectation
     end
     click_on I18n.t('carts.checkout_confirm.btn_text.comfirm')
-    expect_tab(:complete)
-  end
-
-  def fill_complete_step
-    click_on I18n.t('carts.checkout_confirm.btn_text.complited')
-    expect(page.current_path).to eq root_path
+    sleep 1
+    expect(page.current_path).to eq orders_path
   end
 
   def checkout_continue

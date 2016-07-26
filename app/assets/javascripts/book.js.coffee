@@ -3,7 +3,6 @@ window.Book =
     target = e.currentTarget
     data = data.responseJSON
     if data.errors
-      for field, message of data.errors
-        Helper.error(message, field)
+      Helper.showErrors(data.errors)
     else
       $('.new-review').html(data.message);

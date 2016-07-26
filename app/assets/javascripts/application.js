@@ -17,4 +17,5 @@
 //= require cart
 //= require helper
 //= require book
+//= require checkout
 //= require app

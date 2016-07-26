@@ -16,10 +16,5 @@ RSpec.describe CouponsController, type: :controller do
       patch :apply, params: { coupon: { name: coupon.name } }
       expect(response).to redirect_to cart_path
     end
-
-    it 'render :apply, as :js' do
-      patch :apply, format: :js, params: { coupon: { name: coupon.name } }
-      expect(response).to render_template :apply
-    end
   end
 end

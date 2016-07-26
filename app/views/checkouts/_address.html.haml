@@ -1,4 +1,4 @@
-=form_for @form, url: checkout_path, remote:true, html: {method: :put, class:'form addresses'} do |f|
+=form_for @form, url: checkout_path, remote:true, html: {method: :put, class:'checkout_form'} do |f|
   =f.hidden_field 'step', value: :address
   .row
     .col-md-6
