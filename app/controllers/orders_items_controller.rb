@@ -1,29 +1,18 @@
 class OrdersItemsController < ApplicationController
   before_action :set_order
   before_action :find_item, only: [:update, :destroy]
+  respond_to :json
 
   def create
     @order_item = @order.orders_items.create(order_item_params)
-    respond_to do |f|
-      f.html { redirect_to cart_path }
-      f.json
-    end
   end
 
   def update
     @order_item.update(order_item_params)
-    respond_to do |f|
-      f.html { redirect_to cart_path }
-      f.json
-    end
   end
 
   def destroy
     @order_item.destroy
-    respond_to do |f|
-      f.html { redirect_to cart_path }
-      f.json
-    end
   end
 
   private
