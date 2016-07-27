@@ -17,6 +17,7 @@ class CheckoutForm
            allow_nil: true
 
   def save
+    return order.make_order! if is_step?(:confirm)
     method = "#{step}_params"
     order.update(send(method)) if respond_to?(method)
   end
@@ -37,6 +38,14 @@ class CheckoutForm
     @step.to_sym
   end
 
+  def is_step?(name)
+    step == name
+  end
+
+  def complited?
+    order.awaiting_shipment?
+  end
+
   def use_billing_address?
     @use_billing_address == '1'
   end
@@ -55,5 +64,4 @@ class CheckoutForm
   def payment_params
     { credit_card_attributes: credit_card_attributes }
   end
-
 end

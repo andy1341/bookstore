@@ -21,7 +21,6 @@ feature 'Checkout', checkout: true do
   scenario 'empty address attributes', js: true do
     fill_address_step
     checkout_continue
-    expect(page).to have_css('.alert')
     expect(page).to have_content("can't be blank")
   end
 
@@ -32,8 +31,7 @@ feature 'Checkout', checkout: true do
     fill_delivery_step
     fill_payment_step({number:1233,code:123})
     checkout_continue
-    expect(page).to have_css('.alert')
-    expect(page).to have_content('number is invalid')
+    expect(page).to have_content('is invalid')
   end
 
   context 'fill address with valid data' do
@@ -62,6 +60,5 @@ feature 'Checkout', checkout: true do
     checkout_continue
     expect_tab(:confirm)
     fill_confirm_step
-    fill_complete_step
   end
 end

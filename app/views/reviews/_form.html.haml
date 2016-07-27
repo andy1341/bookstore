@@ -1,4 +1,4 @@
-=form_for review, remote:true, html:{class:'form'} do |f|
+=form_for review, remote:true, format: :json, html:{class:'form'} do |f|
   =f.hidden_field :reviewable_type
   =f.hidden_field :reviewable_id
   =f.hidden_field :user_id, value: current_user.id
@@ -6,8 +6,9 @@
     =f.label :rating
     -(1..5).to_a.each do |val|
       =f.radio_button :rating, val, class: 'star', checked: val==1
-  .form-group
+  .form-group.text
     =f.label :text
-    =f.text_area :text
+    =f.text_area :text, required: true
+    %p.help-block
   .form-group
     =f.submit t('.btn_text')

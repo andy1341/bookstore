@@ -9,11 +9,7 @@ class CheckoutsController < ApplicationController
 
   def update
     @form.save
-  end
-
-  def make_order
-    return new_session_order if current_order.make_order!
-    current_order.errors.add(:base, "Can't make order")
+    respond_to :json
   end
 
   private

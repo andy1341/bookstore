@@ -1,6 +1,6 @@
 -if coupon.present?
   %div= t('.discount',discount:coupon.discount)
 -else
-  =form_for Coupon.new, method: :patch, remote: true do |f|
+  =form_for current_order.build_coupon, method: :patch do |f|
     =f.text_field :name
     =f.submit t('.submit')

@@ -22,4 +22,9 @@ module ApplicationHelper
         content_tag(:div,
                       "#{credit_card.expiration_month}/#{credit_card.expiration_year}")
   end
+
+  def error_span(field)
+    field = field.join(' ') if field.is_a? Array
+    content_tag(:span,nil,class:"text-danger #{field}")
+  end
 end

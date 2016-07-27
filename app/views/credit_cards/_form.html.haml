@@ -1,17 +1,22 @@
 =form.fields_for card do |f|
   .form-group
     = f.label :number
+    = error_span([card, :number])
     = f.text_field :number, class: 'form-control'
   .form-group
     .row
       .col-md-6
         = f.label :expiration_month
+        = error_span([card, :expiration_month])
         %br
         = f.select :expiration_month, CreditCard.months, class: 'form-control'
+
       .col-md-6
         = f.label :expiration_year
+        = error_span([card, :expiration_year])
         %br
         = f.select :expiration_year, CreditCard.years, class: 'form-control'
-  .form-group
+  .form-group.code
     = f.label :code
     = f.text_field :code
+    = error_span([card, :code])

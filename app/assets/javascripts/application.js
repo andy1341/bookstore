@@ -14,4 +14,8 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require jquery-star-rating
-//= 
+//= require cart
+//= require helper
+//= require book
+//= require checkout
+//= require app

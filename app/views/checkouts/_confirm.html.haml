@@ -1,11 +1,10 @@
 .confirm
   .row
-    %h2= complited ? t('.title.complited') : t('.title.confirm')
+    %h2= t('.title.confirm')
   .row
     .col-md-3
       %h3= t('carts.checkout_address.shipping')
-      -unless complited
-        =button_tag(icon('edit'),class:'btn btn-link tab-link',id:'address')
+      =button_tag(icon('edit'),class:'btn btn-link tab-link',id:'address')
       .info
         -if @form.use_billing_address
           =t('.ship_to_billing')
@@ -13,26 +12,21 @@
           =print_address(@form.shipping_address.decorate)
     .col-md-3
       %h3= t('carts.checkout_address.billing')
-      -unless complited
-        =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'address')
+      =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'address')
       .info
         =print_address(@form.billing_address.decorate)
     .col-md-3
       %h3= t('carts.checkout.tab-delivery')
-      -unless complited
-        =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'delivery')
+      =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'delivery')
       .info
         =@form.delivery.name
     .col-md-3
       %h3= t('carts.checkout.tab-payment')
-      -unless complited
-        =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'payment')
+      =button_tag(icon('edit'),class:'btn btn-link tab-link', id:'payment')
       .info
         =print_credit_card(@form.credit_card)
   .row
     .col-md-4.col-md-push-4
-      -if complited
-        =link_to t('.btn_text.complited'), root_path, class:'btn btn-block btn-success'
-      -else
-        =form_tag make_order_url, remote: true, method: :patch, class:'form' do
-          =submit_tag t('.btn_text.comfirm'), class:'btn btn-success btn-block'
+      =form_for @form, url: checkout_path, remote:true, html: {method: :put, class:'checkout_form'} do |f|
+        =f.hidden_field 'step', value: :confirm
+        =submit_tag t('.btn_text.comfirm'), class:'btn btn-success btn-block'

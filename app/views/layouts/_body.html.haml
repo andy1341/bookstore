@@ -1,5 +1,6 @@
 .container
   =render('shared/notice', message: notice) if notice.present?
+  =render('shared/alert', message: flash[:alert]) if flash[:alert].present?
   -unless breadcrumbs.empty?
     %ol.breadcrumb
       =render_breadcrumbs :tag => :li, :separator => ""

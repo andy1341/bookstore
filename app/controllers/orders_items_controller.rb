@@ -6,7 +6,7 @@ class OrdersItemsController < ApplicationController
     @order_item = @order.orders_items.create(order_item_params)
     respond_to do |f|
       f.html { redirect_to cart_path }
-      f.js
+      f.json
     end
   end
 
@@ -14,7 +14,7 @@ class OrdersItemsController < ApplicationController
     @order_item.update(order_item_params)
     respond_to do |f|
       f.html { redirect_to cart_path }
-      f.js
+      f.json
     end
   end
 
@@ -22,7 +22,7 @@ class OrdersItemsController < ApplicationController
     @order_item.destroy
     respond_to do |f|
       f.html { redirect_to cart_path }
-      f.js
+      f.json
     end
   end
 

@@ -1,0 +1,1 @@
+json.btn link_to t('carts.add_btn.text'), cart_path, class: 'btn btn-primary to-cart'

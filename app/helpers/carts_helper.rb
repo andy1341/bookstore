@@ -3,6 +3,10 @@ module CartsHelper
     current_order.orders_items.map(&:book).include? book
   end
 
+  def order_item
+    OrdersItem.new
+  end
+
   def tab_header(name, title, enable = true, active = false)
     result = <<HTML
 <li role="presentation" class="#{active ? 'active' : ''}#{enable ? '' : 'disabled'}">

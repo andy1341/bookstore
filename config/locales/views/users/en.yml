@@ -25,13 +25,10 @@ en:
         new_pass: "(leave blank if you don't want to change it)"
         current_pass: '(we need your current password to confirm your changes)'
       btn_text: 'Update'
-    info:
+    show:
       title:
         email: 'Email'
         billing: 'Billing Address'
         shipping: 'Shipping Address'
         credit: 'Credit Card'
-    orders:
-      title: 'Orders'
-    show:
-      title: 'Users profile'
+        profile: 'Users profile'

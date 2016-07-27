@@ -1,4 +1,0 @@
--if @review.errors.any?
-  $('h1').after('#{escape_javascript(render 'shared/alert', message: @review.errors.to_a.join('<br>').html_safe)}')
--else
-  $('.new-review').html('#{escape_javascript(render 'books/success_review')}')
