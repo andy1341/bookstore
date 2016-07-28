@@ -55,13 +55,13 @@ feature 'Cart' do
 
       scenario 'add broken coupon' do
         fill_in 'coupon[name]', with: 'sale'
-        click_on I18n.t('coupons.form.submit')
+        find('.coupon [name=button]').click
         expect(page).to have_content I18n.t('coupons.apply.invalid_coupon')
       end
 
       scenario 'add valid coupon' do
         fill_in 'coupon[name]', with: coupon.name
-        click_on I18n.t('coupons.form.submit')
+        find('.coupon [name=button]').click
         expect(page).to have_content I18n.t('coupons.form.discount',
                                             discount: coupon.discount)
       end
