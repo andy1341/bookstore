@@ -25,6 +25,7 @@ class Order < ApplicationRecord
   before_save :set_total
 
   scope :temporary, -> {where('user_id is NULL AND created_at < ?', TEMPORARY_LIVE_DURATION.ago)}
+  scope :for_admin, -> {where.not(status: :in_progress)}
 
   enum status: [:in_progress, :awaiting_shipment, :shipped, :completed, :cancelled]
 
