@@ -1,7 +1,10 @@
-.col-md-4.book
+.col-xs-push-1.col-xs-10.col-sm-push-0.col-sm-6.col-lg-4.book
   =link_to book do
-    =image_tag book.image
-  %h2= book.title
-  %p.description= book.short_description
-  %p
-    =link_to t('.btn'), book, class: 'btn btn-primary'
+    .book-container
+      .image.centered
+        =image_tag book.image
+      %h2
+        = book.title
+        %small
+          %b $#{book.price}
+      %p.description= book.decorate.cutted_description

@@ -3,7 +3,7 @@ en:
     reviews:
       title:
         reviews: 'Reviews'
-        new: ' New review'
+        new: ' Add review'
       empty: 'There is no reviews yet.'
       log_to_review: 'Log in to add new review'
     review:

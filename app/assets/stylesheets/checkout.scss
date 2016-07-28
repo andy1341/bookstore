@@ -13,19 +13,31 @@
   label {
     margin-right: 5px;
   }
-  .billing-address {
-    margin-top:3em;
+
+  label.use-billing {
+    margin-left: 25px;
+    margin-top: 2px;
+  }
+  .use-billing {
+    position: absolute;
   }
 
-  .shipping-address {
+  .shipping-address,
+  .billing-address {
     transition-duration: 1s;
     position: static;
     overflow: hidden;
     max-height:40em;
+    margin-top:3em;
+
   }
   #checkout_form_use_billing_address:checked ~ .shipping-address {
     max-height:0;
   }
+}
+
+#delivery {
+  margin-top: 15px;
 }
 
 .confirm {
@@ -39,4 +51,6 @@
       padding: 0;
     }
   }
+
+  #new_checkout_form {margin-top: 15px}
 }

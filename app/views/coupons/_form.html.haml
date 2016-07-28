@@ -1,6 +1,9 @@
--if coupon.present?
-  %div= t('.discount',discount:coupon.discount)
--else
-  =form_for current_order.build_coupon, method: :patch do |f|
-    =f.text_field :name
-    =f.submit t('.submit')
+%div.coupon
+  -if coupon.present?
+    =t('.discount',discount:coupon.discount)
+  -else
+    =form_for current_order.build_coupon, method: :patch do |f|
+      .input-group
+        =f.text_field :name, class:'form-control', placeholder: t('coupons.form.placeholder')
+        .input-group-btn
+          =f.button icon('ok'), class: 'btn btn-primary'
