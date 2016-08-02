@@ -1,5 +1,39 @@
 %h2= t '.title'
--[:in_progress, :awaiting_shipment, :shipped, :completed, :cancelled].each_with_index do |status,i|
+-unless current_user.order_in_progress.empty?
+  .col-md-12
+    %table.table.books.text-left
+      %caption= t '.current_order'
+      %thead
+        %tr
+          %th
+          %th= t '.book'
+          %th= t '.price'
+          %th= t '.quantity'
+          %th= t '.total'
+          %th
+      %tbody
+        -current_user.order_in_progress.orders_items.each do |item|
+          %tr[item]
+            %td
+              =link_to item.book do
+                =image_tag item.book.image, height: '80px', width: '80px', class:'img-thumbnail'
+            %td
+              =link_to item.book do
+                =item.book.title
+            %td
+              $#{item.cost}
+            %td.count
+              =item.count
+            %td.total
+              $#{item.total}
+        %tr
+          %td
+            =link_to t('to_cart'), cart_path, class: 'btn btn-success to-cart'
+          %td.text-right{colspan:3}
+          %td{colspan:2}
+            %b.cart-total
+              $#{current_order.total}
+-[:awaiting_shipment, :shipped, :completed, :cancelled].each_with_index do |status,i|
   -unless @orders.send(status).empty?
     .orders-by-status.col-md-6
       %table.table
