@@ -101,7 +101,7 @@ GEM
       thor (~> 0.19)
     breadcrumbs_on_rails (2.3.1)
     builder (3.2.2)
-    cancan (1.6.10)
+    cancancan (1.15.0)
     capistrano (3.5.0)
       airbrussh (>= 1.0.0)
       capistrano-harrow
@@ -422,7 +422,7 @@ DEPENDENCIES
   autoprefixer-rails
   bootstrap-sass
   breadcrumbs_on_rails
-  cancan
+  cancancan
   capistrano
   capistrano-bundler
   capistrano-rails

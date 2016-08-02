@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   prepend_before_action :set_book
+  load_and_authorize_resource
 
   def show
     @orders_item = current_order.orders_items.new
