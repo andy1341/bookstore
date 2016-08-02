@@ -10,18 +10,44 @@
     width: calc(100% - 100px);
 
     .item {
-      .image {
-        max-width: 100%;
-        max-height:300px;
+      .title {
+        margin-bottom: 5px;
+        h2 {
+          font-size: 25px;
+          margin-bottom: 5px;
+          display: inline-block;
+          margin-left: 30%;
+        }
       }
+      .content {
+        height: 20em;
+        .image-container {
+          text-align: center;
+          padding: 0 10px;
+          height: 100%;
+          display: block;
+          width: 30%;
+          float: left;
+          a {max-height: 100%;}
+          .image {
+            max-width: 100%;
+            max-height: 20em;
+          }
 
-      .description {
-        min-height: 150px;
-        max-height: 200px;
-        overflow: hidden;
-      }
-      .price {
-        display: inline-block;
+        }
+        .describe {
+          display: block;
+          width: 70%;
+          float: left;
+        }
+
+        .description {
+          overflow: hidden;
+          margin-bottom: 10px;
+        }
+        .price {
+          display: inline-block;
+        }
       }
     }
   }

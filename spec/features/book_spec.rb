@@ -48,7 +48,7 @@ feature 'Book' do
       sign_in(user)
       visit book_path(book)
       within '.new-review' do
-        fill_in 'Text', with: FFaker::Lorem.paragraph
+        fill_in 'review[text]', with: FFaker::Lorem.paragraph
         find('#review_rating_3').click
         click_on 'Add review'
       end

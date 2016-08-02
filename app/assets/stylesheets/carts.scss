@@ -25,3 +25,15 @@ table.books {
     }
   }
 }
+
+.coupon {
+  display: inline-block;
+  vertical-align: middle;
+
+  input.form-control {width:11em;}
+}
+
+.submit {
+  display: inline-block;
+  vertical-align: middle;
+}

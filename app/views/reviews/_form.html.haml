@@ -2,12 +2,10 @@
   =f.hidden_field :reviewable_type
   =f.hidden_field :reviewable_id
   =f.hidden_field :user_id, value: current_user.id
-  .form-group
-    =f.label :rating
+  .form-group.rating
     -(1..5).to_a.each do |val|
       =f.radio_button :rating, val, class: 'star', checked: val==1
   .form-group.text
-    =f.label :text
     =f.text_area :text, required: true
     %p.help-block
   .form-group

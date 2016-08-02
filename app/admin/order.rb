@@ -1,8 +1,16 @@
 ActiveAdmin.register Order do
   permit_params :order, :status
 
+  actions :all, except: [:destroy, :new]
+
+  controller do
+    def scoped_collection
+      resource_class.for_admin
+    end
+  end
+
   after_save do |order|
-    event = params[:order][:active_admin_requested_event]
+    event = params[:order] && params[:order][:active_admin_requested_event]
     unless event.blank?
       safe_event = (order.aasm.events(permitted: true).map(&:name) & [event.to_sym]).first
       raise "Forbidden event #{event} requested on instance #{order.id}" unless safe_event
@@ -42,12 +50,17 @@ ActiveAdmin.register Order do
   end
 
   form do |f|
+    available_status = f.object.aasm.events(permitted: true).map(&:name)
     f.inputs 'Order Details' do
-      f.input :status, input_html: { disabled: true }, label: 'Current state'
-      unless f.object.in_progress? || f.object.cancelled?
-        f.input :active_admin_requested_event, label: 'Change state', as: :select, collection: f.object.aasm.events(permitted: true).map(&:name)
-      end
+      next "<h2>You cann't change status</h2>".html_safe if  available_status.empty?
+      f.input :active_admin_requested_event,
+              label: "Change state #{f.object.status.humanize(capitalize: false)} to:",
+              as: :select,
+              collection: available_status
     end
-    f.actions
+    f.actions do
+      action(:submit) unless available_status.empty?
+      cancel_link
+    end
   end
 end

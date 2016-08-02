@@ -1,15 +1,15 @@
 %h2= t '.title.reviews'
 
 .row
-  .col-md-4
+  .col-md-12
+    .new-review.review-container
+      -if user_signed_in?
+        %h3= t '.title.new'
+        =render 'reviews/form', review: @book.reviews.new
+      -else
+        %h3
+          =t '.empty' unless @book.reviews_proved.present?
+          =t '.log_to_review'
+
     -if @book.reviews_proved.present?
       =render collection: @book.reviews_proved, partial: 'books/review'
-    -else
-      %h3= t '.empty'
-
-  .col-md-4.col-md-pull-1.pull-right.new-review
-    -if user_signed_in?
-      %h3= t '.title.new'
-      =render 'reviews/form', review: @book.reviews.new
-    -else
-      %h3= t '.log_to_review'

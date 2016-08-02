@@ -1,5 +1,5 @@
 %h1 Checkout
-.col-md-8.checkout
+.col-sm-8.checkout
   %ul.nav.nav-tabs{role:"tablist"}
     =tab_header 'address', t('.tab-address'), true, true
     =tab_header 'delivery', t('.tab-delivery'), false
@@ -14,7 +14,7 @@
       = render 'payment'
     %div.tab-pane.fade{role:"tabpanel", id:"confirm"}
 
-.col-md-4
+.col-sm-4
   %h3.text-center= t('.summary')
   .order-summary
     =render 'summary', order: current_order

@@ -1,27 +1,81 @@
 .book-detail {
-  .image img {
-    width: 100%;
-  }
-  .price {
-    display: inline-block;
-  }
-  .reviews {
-    .review {
-      margin: 10px 0px;
-      .rating-cancel {
-        display:none!important;
-      }
-      .star-rating-control {
-        display: inline-block;
-      }
-      .author {
-        color: cornflowerblue;
-        margin-left: 15px;
-      }
-      .review-text {
-        padding:10px;
-      }
-    }
+  h1 {
+    margin: 0;
   }
 
+  h2 {
+    margin-top: 0;
+    font-size:25px;
+  }
+  @media screen and (max-width: 991px) {
+    h1 {font-size:30px}
+    h2 {font-size:20px}
+  }
+  .image {
+    float: left;
+    width: 30%;
+    height: 300px;
+    background-position: 50% 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .describe {
+    float: left;
+    width: 70%;
+    padding-left: 10px;
+    .price {
+      display: inline-block;
+    }
+    .description {margin-bottom: 15px}
+  }
+
+}
+
+.review-container {
+  margin: 10px 0px;
+  border-radius: 10px;
+  background: #f5f5f5;
+  padding: 10px;
+
+  h3 {
+    font-size: 20px;
+    margin: 0px 0px 10px;
+  }
+
+  .form-group.rating {
+    height: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    height: 5em;
+  }
+}
+
+.review-container:hover {
+  box-shadow: inset 0px 0px 1px #b7b7b7;
+}
+
+.reviews {
+
+  .review {
+
+    .rating-cancel {
+      display:none!important;
+    }
+    .star-rating-control {
+      display: inline-block;
+    }
+    .header {
+      small {
+        display: inline-block;
+        color: #999999;
+      }
+    }
+
+    .review-text {
+      padding:10px;
+    }
+  }
 }
