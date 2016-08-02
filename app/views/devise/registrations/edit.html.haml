@@ -1,10 +1,54 @@
-%h2= t '.title'
-=render 'users/form', user:current_user
-.container
-  .row
-    .col-md-6
+.col-lg-10.col-lg-push-1.col-md-11.col-sm-12.profile
+  %h2= t '.title'
+  =devise_error_messages!
+
+  %ul.nav.nav-tabs{role:"tablist"}
+    =tab_header 'billing', t('.tabs.billing'), true, true
+    =tab_header 'shipping', t('.tabs.shipping')
+    =tab_header 'credit', t('.tabs.credit')
+    =tab_header 'personal_info', t('.tabs.personal_info')
+    =tab_header 'password', t('.tabs.password')
+    =tab_header 'cancel', t('.tabs.cancel')
+  %div.tab-content
+    %div.tab-pane.fade-in.active{role:"tabpanel", id:"billing"}
+      =user_form do |f|
+        =render 'addresses/form', address: :billing_address, form: f
+        = f.submit t('.btn_text'), class:'btn btn-primary'
+    %div.tab-pane.fade{role:"tabpanel", id:"shipping"}
+      =user_form do |f|
+        =render 'addresses/form', address: :shipping_address, form: f
+        = f.submit t('.btn_text'), class:'btn btn-primary'
+    %div.tab-pane.fade{role:"tabpanel", id:"credit"}
+      =user_form do |f|
+        =render 'credit_cards/form', card: :credit_card, form: f
+        = f.submit t('.btn_text'), class:'btn btn-primary'
+    %div.tab-pane.fade{role:"tabpanel", id:"personal_info"}
+      =user_form do |f|
+        .form-group
+          =f.label :email
+          =f.email_field :email, class: 'form-control'
+        -if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          %div Currently waiting confirmation for: #{resource.unconfirmed_email}
+        = f.submit t('.btn_text'), class:'btn btn-primary'
+    %div.tab-pane.fade{role:"tabpanel", id:"password"}
+      =user_form do |f|
+        -unless resource.is_facebook_account
+          .form-group
+            = f.label(:password)
+            %i= t '.hint.new_pass'
+            = f.password_field :password, autocomplete: "off", class: 'form-control'
+          .form-group
+            = f.label(:password_confirmation)
+            = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+          .form-group
+            = f.label(:current_password)
+            %i= t '.hint.current_pass'
+            = f.password_field :current_password, autocomplete: "off", class: 'form-control'
+          = f.submit t('.btn_text'), class:'btn btn-primary'
+    %div.tab-pane.fade{role:"tabpanel", id:"cancel"}
       %h3= t '.remove.title'
-
-      %p #{button_to t('.remove.btn'), registration_path(resource_name), data: { confirm: t('.remove.confirm')}, method: :delete}
-
-      = link_to "Back", :back
+      %p= button_to t('.remove.btn'),
+                      registration_path(resource_name),
+                      data: { confirm: t('.remove.confirm')},
+                      method: :delete,
+                      class:'btn btn-danger'

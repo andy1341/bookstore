@@ -5,8 +5,9 @@ set :application,     'bookstore'
 set :user,            'bookstore'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
-set :branch, ENV['BRANCH'] if ENV['BRANCH']
-
+# set :branch, ENV['BRANCH'] ? ENV['BRANCH'] : `git rev-parse --abbrev-ref HEAD`
+puts `git rev-parse --abbrev-ref HEAD`
+exit
 # Don't change these unless you know what you're doing
 set :pty,             true
 set :use_sudo,        false
