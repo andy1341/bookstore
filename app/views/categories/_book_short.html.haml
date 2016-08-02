@@ -1,0 +1,9 @@
+.col-xs-push-1.col-xs-10.col-sm-push-0.col-sm-6.col-lg-6.book.short
+  =link_to book do
+    .book-container
+      .image.centered
+        =image_tag book.image
+      %h2
+        = book.title
+        %small
+          %b $#{book.price}

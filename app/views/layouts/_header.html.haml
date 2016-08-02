@@ -10,14 +10,10 @@
           = image_tag '/images/logo.png', height: '40px'
       .navbar-collapse.collapse#navbar
         %ul.nav.navbar-nav
-          %li.dropdown
-            %a.dropdown-toggle{data:{toggle:"dropdown"}, href:"#"}
-              =t(:'menu.categories')
-              %span.caret
-            %ul.dropdown-menu
-              -categories.each do |category|
-                %li
-                  =link_to category.name, category
+          %li
+            =link_to t('menu.home'), root_path
+          %li
+            =link_to t('menu.shop'), categories_path
         %ul.nav.navbar-nav.navbar-right
           %li.cart-link
             =render 'layouts/cart_text'

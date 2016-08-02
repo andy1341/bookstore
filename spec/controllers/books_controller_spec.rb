@@ -19,7 +19,7 @@ RSpec.describe BooksController, type: :controller do
     end
 
     it 'add breadcrumbs' do
-      expect(controller).to receive(:add_breadcrumb).twice
+      expect(controller).to receive(:add_breadcrumb).exactly(4).times
       get :show, params: { id: book.id }
     end
   end

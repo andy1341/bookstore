@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_order
+  helper_method :current_order, :categories
 
   before_action :configure_device, if: :devise_controller?
   before_action :set_breadcrumbs
@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
   def current_order
     return current_user.order_in_progress if current_user
     Order.find_by_id(session[:order_id]) || new_session_order
+  end
+
+  def categories
+    @categories = Category.with_books
   end
 
   protected

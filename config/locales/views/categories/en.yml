@@ -4,3 +4,8 @@ en:
       empty: 'There is no books'
     book:
       btn: 'View Details'
+    index:
+      shop:
+        title: 'Shop'
+      categories:
+        title: "Shop by categories"

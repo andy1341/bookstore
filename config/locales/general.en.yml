@@ -25,7 +25,8 @@ en:
       short: '%Y-%M-%d %H:%M'
   title: 'Bookstore'
   menu:
-    categories: 'Categories'
+    home: 'Home'
+    shop: 'Shop'
     cart: 'Cart'
     admin: 'Admin panel'
     orders: 'Orders'
