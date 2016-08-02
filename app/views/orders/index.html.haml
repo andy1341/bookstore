@@ -1,6 +1,6 @@
 %h2= t '.title'
 -unless current_user.order_in_progress.empty?
-  .col-md-12
+  .col-md-12.current-order
     %table.table.books.text-left
       %caption= t '.current_order'
       %thead

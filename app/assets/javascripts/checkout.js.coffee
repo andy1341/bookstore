@@ -9,6 +9,7 @@ window.Checkout =
 
   onCheckoutUpdate: (e, data, status, xhr) ->
     data = data.responseJSON
+    Helper.hideErrors();
     return Helper.showErrors(data.errors) if data.errors
     document.location = data.location if data.location
     $('.order-summary').html(data.summary) if data.summary
