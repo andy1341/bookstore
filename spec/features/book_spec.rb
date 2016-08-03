@@ -13,7 +13,7 @@ feature 'Book' do
   end
   scenario 'can see breadcrumbs' do
     expect(page).to have_css '.breadcrumb'
-    expect(page).to have_css '.breadcrumb li', count: 2
+    expect(page).to have_css '.breadcrumb li', count: 4
   end
   context "book does't at the cart" do
     scenario 'can add book to the cart', js: true do

@@ -12,3 +12,8 @@ en:
       total: 'Total'
     index:
       title: 'Orders'
+      current_order: 'Current order'
+      book: 'Book'
+      price: 'Price'
+      quantity: 'Quantity'
+      total: 'Total'

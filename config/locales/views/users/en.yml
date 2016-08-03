@@ -7,24 +7,6 @@ en:
         cart: 'Credit Card'
         person_info: 'Personal information'
         pass: 'Password'
-      hint:
-        new_pass: "(leave blank if you don't want to change it)"
-        current_pass: '(we need your current password to confirm your changes)'
-      btn_text: 'Update'
-    form_details:
-      title:
-        billing: 'Billing address'
-        shipping: 'Shipping address'
-        cart: 'Credit Card'
-      btn_text: 'Update'
-    form_personal_info:
-      title:
-        person_info: 'Personal information'
-        pass: 'Password'
-      hint:
-        new_pass: "(leave blank if you don't want to change it)"
-        current_pass: '(we need your current password to confirm your changes)'
-      btn_text: 'Update'
     show:
       title:
         email: 'Email'

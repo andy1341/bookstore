@@ -5,7 +5,7 @@ FactoryGirl.define do
     street_address { FFaker::Address.street_address }
     city { FFaker::Address.city }
     zip { FFaker::AddressUA.zip_code }
-    phone { FFaker::PhoneNumber.phone_number }
+    phone { FFaker.numerify('+############') }
     country
   end
 end

@@ -1,0 +1,16 @@
+.shop
+  .col-xs-8.col-md-9.col-lg-10
+    %h2= t('.shop.title')
+    -if @books.count > 0
+      .row
+        -@books.each do |book|
+          =render 'book_short', book: book
+    -else
+      %p= t 'categories.show.empty'
+
+    =paginate @books
+  .col-xs-4.col-md-3.col-lg-2
+    %h2= t('.categories.title')
+    .list-group
+      -categories.each do |category|
+        =link_to category.name, category, class: 'list-group-item'

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get 'users/show', as: 'user_root'
   resources :books, only: [:show]
-  resources :categories, only: [:show]
+  resources :categories, only: [:show, :index]
   resources :authors, only: [:show]
   resources :orders_items, only: [:create, :update, :destroy]
   resources :reviews, only: [:create]

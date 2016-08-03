@@ -3,10 +3,21 @@ en:
     registrations:
       edit:
         title: 'Edit user profile'
+        tabs:
+          billing: 'Billing address'
+          shipping: 'Shipping address'
+          credit: 'Credit card'
+          personal_info: 'Personal information'
+          password: 'Password'
+          cancel: 'Cancel my account'
         remove:
-          title: 'Cancel my account'
+          title: 'Once you cancel account, there is no going back. Please be certain. '
           btn: "Cancel my account"
           confirm: 'Are you sure?'
+        btn_text: 'Update'
+        hint:
+          new_pass: "(leave blank if you don't want to change it)"
+          current_pass: '(we need your current password to confirm your changes)'
       new:
         title: 'Sign Up'
         sign_up_btn: 'Sign up'

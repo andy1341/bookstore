@@ -6,6 +6,8 @@ window.Helper =
       else
         'h1'
     $(selector).html(message)
+  hideErrors: ->
+    $('.text-danger').html('')
   showErrors: (errors) ->
     for field, message of errors
       this.showError(message[0], field)
