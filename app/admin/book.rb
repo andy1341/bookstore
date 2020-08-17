@@ -12,7 +12,7 @@ ActiveAdmin.register Book do
     column :category
     column :price
     column :image do |book|
-      image_tag book.image, width: '100px'
+      image_tag book.image.url, width: '100px'
     end
     actions
   end

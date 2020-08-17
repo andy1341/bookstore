@@ -13,7 +13,7 @@
           .row.content
             .col-xs-12
               .image-container
-                =link_to image_tag(book.image, class:['image']), book
+                =link_to image_tag(book.image.url, class:['image']), book
               .describe
                 .description
                   =book.short_description

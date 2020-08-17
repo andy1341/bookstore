@@ -16,7 +16,7 @@
           %tr[item]
             %td
               =link_to item.book do
-                =image_tag item.book.image, height: '80px', width: '80px', class:'img-thumbnail'
+                =image_tag item.book.image.url, height: '80px', width: '80px', class:'img-thumbnail'
             %td
               =link_to item.book do
                 =item.book.title
