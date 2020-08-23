@@ -31,7 +31,7 @@ services:
       RAILS_ENV: development
       RACK_ENV: development
     volumes:
-      - ../../:/home/www/terraform_rails
+      - ../../:/home/www/bookstore
       - gems:/usr/local/bundle
     tmpfs:
       - /tmp

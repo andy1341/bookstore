@@ -82,7 +82,7 @@ test:
 #
 production:
   <<: *default
-  host: <%= ENV['POSTGRES_HOST'] %>
+  host: <%= ENV['DB_HOST'] %>
   database: bookstore_production
-  username: <%= ENV['POSTGRES_USERNAME'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>

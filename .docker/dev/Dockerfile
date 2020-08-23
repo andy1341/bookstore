@@ -6,7 +6,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV APP_USER app
 ENV APP_USER_HOME /home/$APP_USER
-ENV APP_HOME /home/www/terraform_rails
+ENV APP_HOME /home/www/bookstore
 
 RUN useradd -m -d $APP_USER_HOME $APP_USER
 
