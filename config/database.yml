@@ -15,17 +15,19 @@
 # gem 'pg'
 #
 default: &default
+  host: db
+  port: 5432
   adapter: postgresql
   encoding: unicode
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: postgres
-  password: 123
 
-development:
+development: &development
   <<: *default
   database: bookstore_development
+  username: postgres
+  password: 123
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -55,8 +57,9 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
+  <<: *development
   database: bookstore_test
+
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -79,6 +82,7 @@ test:
 #
 production:
   <<: *default
+  host: <%= ENV['DB_HOST'] %>
   database: bookstore_production
-  username: bookstore
-  password: <%= ENV['BOOKSTORE_DATABASE_PASSWORD'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>

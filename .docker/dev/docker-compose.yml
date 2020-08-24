@@ -1,0 +1,42 @@
+version: "3.6"
+
+volumes:
+  postgres:
+  gems:
+
+services:
+  db:
+    image: postgres:9.6
+    expose:
+      - 5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+
+  app: &app
+    build:
+      context: ../../
+      dockerfile: .docker/dev/Dockerfile
+    command: bin/rails server -b 0.0.0.0
+    entrypoint: .docker/dev/entrypoint.sh
+    ports:
+      - 3000:3000
+    tty: true
+    stdin_open: true
+    environment:
+      RAILS_ENV: development
+      RACK_ENV: development
+    volumes:
+      - ../../:/home/www/bookstore
+      - gems:/usr/local/bundle
+    tmpfs:
+      - /tmp
+    depends_on:
+      - db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 2m
